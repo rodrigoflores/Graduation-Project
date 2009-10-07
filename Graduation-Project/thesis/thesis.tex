@@ -9,7 +9,7 @@
 
 
 
-\title{Trabalho de Conclusão de Curso}
+\title{Trabalho de Conclusão de Curso \\ }
 
 
 \author{Rodrigo L. M. Flores \and
@@ -18,20 +18,48 @@
 
 \date{\today}
 
-
-
 \begin{document}
-
 
 \maketitle
 
+\section{Introdução}
+
+O ponto de partida para este projeto vem da necessidade de se fazer processamentos custosos de 
+dados em bioinformática. Estes processamentos costumam ser combinatórios, o que os fazem
+demorar um bom tempo sendo executados em um computador comum, sendo necessário utilizar recursos
+computacionais de alta performance para obter os resultados em tempo hábil.
+
+\subsection{Programação paralela e distribuída}
+
+Uma abordagem clássica para se resolver esse problema é utilizar \textit{clusters} que são um grupo de computadores
+ligados entre si de modo a parecer ser um único computador muito mais potente. \textit{Clusters} podem ser tanto máquinas
+específicas para isso, produzidas com um alto custo e com um hardware específico para otimizar seu desempenho, ou 
+pode ser utilizado o conceito de computação em grades: utilizar computadores comuns trabalhando em paralelo 
+para fazer o processamento. 
+
+Uma outra alternativa é utilizar grades computacionais distribuídas. Grades computacionais costumam ser constituídas
+de um conjunto de computadores cujo principal objetivo não é fazer processamento pesado, mas sim lidar com o usuário 
+cotidiano que normalmente utiliza a máquina para acessar a internet, ler seu correio eletrônico, elaborar
+trabalhos usando processadores de texto e planilhas eletrônicas, entre outras coisas. Embora grades computacionais tenham um 
+processamento menor que clusters dedicados, costumam ter um custo muito menor, já que normalmente computadores ``comuns'' já existem em
+uma empresa ou universidade. 
 
 
 
+\subsection{BOINC}
+
+Um dos projetos mais famosos neste 
+campo é o \textit{SETI@home}, cujos objetivo originais eram:
+
+\begin{itemize}
+  \itemize Provar a viabilidade e a praticidade de grades computacionais distribuídas;
+  \itemize Fazer um trabalho útil e apoiar uma análise de observações para detectar vida inteligente fora da Terra.
+\end{itemize}
+
+O primeiro destes dois objetivos foi cumprido com sucesso e um middleware para este fim foi criado, o \textit{BOINC}. Já
+o segundo não obteve sucesso: não foi encontrado sinais de vida inteligente fora da Terra. 
 
 
-
-
-
+\subsection{Linguagens Interpretadas}
 
 \end{document}
