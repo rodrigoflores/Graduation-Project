@@ -70,6 +70,36 @@ de vida inteligente fora da Terra. Um middleware então foi criado para este fim
 
 \subsection{Linguagens Interpretadas}
 
+%Colocar bibliografia da wikipedia
 
+Uma das possíveis divisões para linguagens de programação é se seus códigos são compilados ou simplismente interpretados. Enquanto no primeiro caso
+é necessária a utilização de um programa para transformar o código fonte em código de máquina para ele poder então ser executado. No segundo caso,
+há a figura de um interpretador que não converte o programa para código de máquina, mas sim o interpreta e o executa. 
+
+Linguagens interpretadas possuem vantagens e desvantagens: embora elas sejam mais fáceis de serem multiplataforma (basta o interpretador
+estar disponível para aquela plataforma)e permitam escopo e tipagem dinâmica, também costumam ser menos eficientes que linguagens compiladas e 
+a presença de um interpretador é obrigatória para sua execução. 
+
+Dentre as linguagens interpretadas, uma que adquiriu destaque na área de estatística e bioinformática é a linguagem \emph{R}, que também 
+pode ser utilizado como um ambiente. Esta linguagem já vem com as distribuições estatísticas mais usuais e possui uma extensibilidade 
+forte com bibliotecas que podem ser baixadas facilmente.
+
+
+\subsection{Linguagens interpretadas e computação distribuída}
+
+Embora já existam ótimas soluções para a execução distribuída de programas compilados como o MPI\footnote{disponível em \url{http://www.mcs.anl.gov/research/projects/mpi/}}, não se fala muito em soluções para execução distribuída de programas em linguagem interpretada. 
+Para a linguagem \emph{R} há um pacote chamado \emph{gridR} que permite o uso do R com o \emph{Condor}, %Colocar note
+um middleware para execução de programas em grades.  Um outro trabalho que relaciona o R com computação distribuída é o %Colocar o artigo do Rodrigo
+
+
+O artigo %Colocar bibliografia
+sobre a utilização do Middleware de computação voluntária BOINC como solução para computação 
+em grade na Universidade de Extremadura na Espanha. Dentre os programas executados na grade, haviam
+programas em R. Porém isso foi somente instalado em redes de computadores com computadores cujo sistema
+operacional é o Linux. 
+
+Seguindo este feito, este trabalho tem a intenção de construir algo semelhante nos laboratórios da rede CEC do IME/USP. Utilizando
+não somente os computadores executando Linux, mas também os computadores cujo sistema operacional é o Microsoft Windows %Colocar marca registrada.
+já que estes são uma parte considerável da rede.  
 
 \end{document}
