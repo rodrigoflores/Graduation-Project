@@ -11,4 +11,4 @@ for(i in c(1:length(t)))
   g = c(g,max(t[i],z))
 }
 l = c(mean(g))
-write(l,"")
+l

@@ -4,6 +4,7 @@
 
 int main ( )
 {
-	return system("/usr/bin/Rscript heavy.R");		
+	system("/usr/bin/Rscript heavy.R");		
+	return 0;
 }
 
