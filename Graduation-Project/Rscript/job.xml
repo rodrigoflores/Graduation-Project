@@ -1,0 +1,8 @@
+<job_desc>
+    <task>
+        <application>/usr/bin/Rscript</application>
+        <stdout_filename>stdout</stdout_filename>
+        <stderr_filename>stderr</stderr_filename>
+				<command_line>heavy.R</command_line>
+    </task>
+</job_desc>
