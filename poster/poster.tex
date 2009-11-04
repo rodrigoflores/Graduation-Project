@@ -1,4 +1,4 @@
-\documentclass{sciposter}
+\documentclass[b1]{sciposter}
 
 
 \usepackage{epsfig}
@@ -28,8 +28,7 @@
 
 
 
-\title{Boinc + R : Executando rotinas de bioinformática em grades oportunistas
-  }
+\title{Boinc + R : Executando rotinas de bioinformática em grades oportunistas}
 
 % Note: only give author names, not institute
 \author{Rodrigo L. M. Flores \\ Orientador: Roberto Hirata Jr.}
@@ -44,15 +43,13 @@
 
 
 % The following commands can be used to alter the default logo settings
-%\leftlogo[0.9]{logoWenI}{  % defines logo to left of title (with scale factor)
+\leftlogo[1.5]{logo_siicusp}  % defines logo to left of title (with scale factor)
 %\rightlogo[0.52]{RuGlogo}  % same but on right
 
 % NOTE: This will require presence of files logoWenI.eps and RuGlogo.eps, 
 % or other supported format in the current directory  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Begin of Document
-
-
 
 \begin{document}
 %define conference poster is presented at (appears as footer)
@@ -74,8 +71,10 @@
 
 \maketitle
 
+\renewcommand{\papertype}{b1}
+
 %%% Begin of Multicols-Enviroment
-\begin{multicols}{3}
+\begin{multicols}{2}
 
 %%% Abstract
 \begin{abstract}
@@ -89,39 +88,27 @@ a distribuição das rotinas.
 \end{abstract}
 
 %%% Introduction
-\section{Introduction}
+\section{Introdução e Objetivos}
 
-\PARstart{G}{ranulometries} are ordered sets of morphological openings or closings, each of
-which removes image details below a certain size. These can be used for texture
-analysis
-through the use of \emph{pattern spectra}, which show how the number of 
-foreground pixels in the image changes as a function of the size parameter 
-\cite{maragos89:_patter}.
-A drawback of the classical definition of pattern spectra is that spatial 
-information is not included in a pattern spectrum as shown below.
- In this paper, \emph{spatial pattern spectra} are developed which retain information on the distribution of these details at different scales.
- 
+\PARstart{A}lgoritmos da área de bioinformática normalmente são combinatórios e bastante custosos computacionalmente
+e muitas vezes seu processamento em um único computador pessoal se torna inviável e demorado. A utilização de um 
+\textit{supercomputador} pode ser uma boa opção, mas tais tipos de computadores são específicos e caros, o que 
+dificulta bastante seu uso. Uma outra opção é utilizar a computação oportuna em grades de computadores de 
+uma universidade ou empresa, já que estas normalmente possuem muitos computadores que normalmente ficariam desligados
+ em períodos fora do expediente ou sub-utilizados no período de expediente. 
 
-\newcommand{\imsize}{0.45\columnwidth}
-\begin{figure}
-\begin{center}
-\begin{tabular}{c c}
-{\resizebox{\imsize}{!}{\includegraphics{blocks1}}} &
-{\resizebox{\imsize}{!}{\includegraphics{blocks2}}}\\
-(a) & (b) \\
-{\resizebox{\imsize}{!}{\includegraphics{blocks3}}} &
-{\resizebox{\imsize}{!}{\includegraphics{blocks1a}}}\\
-(c) & (d) \\
-\end{tabular}
-\end{center}
-\caption{ Parts (a) through (c) show three images consisting of squares of
-different sizes;
-(d) shows the pattern spectra, denoting the number of foreground pixels 
- removed by openings by reconstruction by $\lambda \times \lambda$ squares. No 
-granulometry is capable of separating the patterns, because the only 
-differences between the images lie in the distributions of the 
-connected components. }\label{fig:blocks}
-\end{figure}
+Como já existem muitas bibliotecas para desenvolvimento de aplicações de bioinformática na linguagem \textit{R}, um dos
+requisitos do trabalho é fazer com que rotinas nesta linguagem possam ser executadas na grade, evitando assim 
+a reimplementação dos algoritmos e programas. 
+
+Para o gerenciamento da grade, utilizamos o já renomado \textit{middleware} \emph{BOINC}, já utilizado em diversos projetos
+de computação em grade voluntária (pessoas voluntariamente doando ciclos de CPU para projetos ) e que vem também sendo utilizado
+em diversos projetos de computação em grade como o %artigo do Lombraña
+e o %Artigo do Attila
+.
+
+O objetivo deste trabalho é criar uma grade de computadores na rede CEC do IME-USP utilizando o \textit{BOINC} para distribuir as tarefas
+entre os computadores.
 
 
 
@@ -174,16 +161,6 @@ $\{\alpha_r\}$ is the histogram of $\Omega_X$ obtained with the same
 size distribution \cite{Nacken:thesis}, disregarding the bin for grey level 0.
 
 
-\begin{figure}
-\begin{center}
-{\resizebox{\imsize}{!}{\includegraphics{blocks3}}}
-{\resizebox{\imsize}{!}{\includegraphics{blocks3rec}}}
-\end{center}
-\caption{ \label{fig:opentransf} Opening transform with $\{\alpha_r\}$ as in 
- Fig. \ref{fig:blocks}: (left) original image; (right) opening transform
-(contrast stretched for clarity). 
-}
-\end{figure}
 
 
 \section{Spatial pattern spectra}
@@ -261,43 +238,9 @@ This algorithm can
 readily be adapted to other granulometries, simply by computing the 
 appropriate opening transform.
 
-\begin{figure}
-\begin{center}
-\begin{tabular}{c c}
-{\resizebox{\imsize}{!}{\includegraphics{blocks3op}}} &
-{\resizebox{\imsize}{!}{\includegraphics{blocksopen3a}}}\\
-(a) & (b)\\
-{\resizebox{\imsize}{!}{\includegraphics{blocksopen3vx}}}&
-{\resizebox{\imsize}{!}{\includegraphics{blocksopen3vy}}}\\
-(c) & (d) \\
-\end{tabular}
-\end{center}
-\caption{ \label{fig:tauspect} 
-The opening transform using city-block metric: (a) opening transform of
-Fig. 1(c); (b) pattern spectrum; (c) pattern variance-$x$; 
-(d) variance-$y$ spectra.}
-\end{figure}
-
-
-
  
 
 
-\renewcommand{\imsize}{0.3\columnwidth}
-\begin{figure}
-\begin{center}
-{\resizebox{\imsize}{!}{\includegraphics{blocks1mx}}}
-{\resizebox{\imsize}{!}{\includegraphics{blocks2mx}}}
-{\resizebox{\imsize}{!}{\includegraphics{blocks3mx}}}\\
-{\resizebox{\imsize}{!}{\includegraphics{blocks1vx}}}
-{\resizebox{\imsize}{!}{\includegraphics{blocks1vx}}}
-{\resizebox{\imsize}{!}{\includegraphics{blocks3vx}}}
-\end{center}
-\caption{ \label{fig:binspect} Pattern mean-$x$ (top) and variance-$x$ 
-(bottom) spectra: the three collumns show spectra for Fig. 1(a), (b) and (c) 
-from left to right respectively.  Unlike the standard pattern spectra, 
-these spatial pattern spectra can distinguish the three images.}
-\end{figure}
 
 \section{Discussion}
 Spatial pattern spectra form a useful supplement to ordinary pattern 
