@@ -1,4 +1,4 @@
-\documentclass[b1]{sciposter}
+\documentclass[b1,portrait]{sciposter}
 
 
 \usepackage{epsfig}
@@ -44,7 +44,7 @@
 
 % The following commands can be used to alter the default logo settings
 \leftlogo[1.5]{logo_siicusp}  % defines logo to left of title (with scale factor)
-%\rightlogo[0.52]{RuGlogo}  % same but on right
+\rightlogo{cnpq}  % same but on right
 
 % NOTE: This will require presence of files logoWenI.eps and RuGlogo.eps, 
 % or other supported format in the current directory  
@@ -103,9 +103,7 @@ a reimplementação dos algoritmos e programas.
 
 Para o gerenciamento da grade, utilizamos o já renomado \textit{middleware} \emph{BOINC}, já utilizado em diversos projetos
 de computação em grade voluntária (pessoas voluntariamente doando ciclos de CPU para projetos ) e que vem também sendo utilizado
-em diversos projetos de computação em grade como o %artigo do Lombraña
-e o %Artigo do Attila
-.
+em diversos projetos de computação em grade como o citado em \cite{boinc}.
 
 O objetivo deste trabalho é criar uma grade de computadores na rede CEC do IME-USP utilizando o \textit{BOINC} para distribuir as tarefas
 entre os computadores.
@@ -113,187 +111,87 @@ entre os computadores.
 
 
 
-\section{Theory}
+\section{Metodologia}
 
-Let binary images $X$ and $Y$ be defined as a subset of the image domain 
-${\mathbf M}\subset {\mathbb Z}^n$ or ${\mathbb R}^n$ (usually $n=2$). 
-\begin{Def}
-A binary 
-granulometry is a set of operators $\{\alpha_r\}$ with $r$ from some ordered 
-set $\Lambda$ (usually $\Lambda \subset {\mathbb R}$ or ${\mathbb Z}$), with 
-the following three properties
-\begin{align}
-   \alpha_r(X) & \subset  X \label{eq:antiext} \\
-   X \subset Y & \Rightarrow \alpha_r(X) \subset \alpha_r(Y) 
-   \label{eq:increasing} \\
-   \alpha_r(\alpha_s(X)) & =  \alpha_{\max(r,s)}(X) \label{eq:idempot},
-\end{align}   
-for all $r,s \in \Lambda$.
-\end{Def}
+O trabalho consistiu primeiramente no estudo das diversas tecnologias na qual o \textit{R} possui suporte
+para processamento em grade. Foi estudado o artigo \cite{Dias}
+que havia feito algo parecido utilizando o \textit{middleware} \textit{Alchemi} que funciona na plataforma .NET
+da Microsoft. Outro artigo \cite{epub8991}
+fazia uma comparação sobre as diversas tecnologias de computação de alta performance no \textit{R}. Por fim, o artigo \cite{boinc}
+contava da experiência do uso do \textit{BOINC} em uma universidade da Espanha para processamento em grade. Como
+esta última experiência foi bem sucedida, decidimos utilizar o \textit{BOINC} para o gerenciamento de nossa grade.
 
-\begin{Def}
-The pattern spectrum $s_{\alpha}(X)$ obtained by applying 
-granulometry $\{\alpha_r\}$ to a binary image $X$ is defined as
-\begin{equation}
-    (s_{\alpha}(X))(u) = 
-    - \frac{\partial A(\alpha_r(X))}{\partial r}\bigg{\vert}_{r=u}
-\end{equation}
-in which $A(X)$ is a function denoting the Lebesgue measure in 
-${\mathbb R}^n$.
-\end{Def} 
-In the case of discrete images, and with $r \in \Lambda \subset {\mathbb Z}$, 
-this differentiation reduces to
-\begin{align}
-    (s_{\alpha}(X))(r)  & = \#(\alpha_{r}(X) \setminus \alpha_{r^+}(X)) \\ 
-                        & = \#(\alpha_{r}(X)) - \#(\alpha_{r^+}(X)), 
-\end{align}
-with $r^+ = \min\{ r' \in \Lambda \vert r' > r \}$, and $\#(X)$ the 
-numnber of elements of $X$.
+Como a API do \textit{BOINC} só funciona para C,C++,Java e Python, foi utilizado um \textit{Wrapper} que é um programa distribuído junto com o 
+\textit{BOINC} e que executa um arquivo binário, seguindo as instruções fornecidas em um arquivo XML. Para rodar os programas em R,
+colocamos como parâmetro um outro programa que apenas chama a função do C system, usando como parâmetro o caminho 
+do interpretador junto com o script. 
 
-The opening transform \cite{Nacken:thesis} $\Omega_X$ of a binary image $X$ 
-for a granulometry ${\alpha_r}$ is
-\begin{equation}
-  \Omega_X(x) = \max\{ r \in \Lambda \vert x \in \alpha_r(X) \}
-\end{equation}
+Escolhido o \textit{middleware}, nos preocupamos em colocar em funcionamento o processamento de rotinas na linguagem R
+através do \textit{BOINC}, tanto em ambientes Linux como em ambientes Windows. Para o ambiente Linux o processo foi mais 
+simples: havia uma maneira simples de processar trabalhos sem ter que utilizar todo o protocolo de arquivos de entrada e saída
+de um \textit{workunit} do \textit{BOINC}. Já para o Windows o processo foi mais trabalhoso: foi descoberto um bug nas configurações 
+de compilação do Wrapper e foi necessário uma correção de um desenvolvedor do Boinc. Após isso, foi configurando um servidor
+com um projeto do \textit{BOINC} e uma rotina em \textit{R} que faz várias contas para ser testado na grade do CEC. 
 
-The pattern spectrum of a binary image $X$ using granulometry 
-$\{\alpha_r\}$ is the histogram of $\Omega_X$ obtained with the same 
-size distribution \cite{Nacken:thesis}, disregarding the bin for grey level 0.
+\section{Funcionamento do BOINC com a linguagem \textit{R}}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.5]{boinc-schema.png}
+  \caption{Funcionamento do i\textit{BOINC}}
+  \label{boinc_funcionamento}
+\end{figure}
+
+O \textit{BOINC} funciona da seguinte maneira: criado um \textit{workunit} que é um conjunto de dados de entrada para uma aplicação, 
+o cliente se conecta no servidor, faz o download dos arquivos executáveis da aplicação e dos dados de entrada. Após isso, 
+os executáveis são executados com os arquivos de entrada. Quando o processamento acaba, o cliente faz o upload da saída
+e o servidor faz a assimilação da saída, colocando as informações em um banco de dados. O funcionamento do Boinc pode ser visto 
+na \ref{boinc_funcionamento}.
 
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.3]{boinc-diagram-normal.png}
+  \includegraphics[scale=0.3]{boinc-diagram-wrapper.png}
+  \caption{Funcionamento do \textit{BOINC} normal e com o \textit{Wrapper}}
+  \label{boinc_funcionamento_nw}
+\end{figure}
 
 
-\section{Spatial pattern spectra}
-Pattern spectra only retain the amount of detail present at  scale $r$.
-This can be amended by computing some parameterization of the spatial 
-distribution in an image $\alpha_r(X) \setminus \alpha_{r+}(X)$ as a function of $r$. 
+Aplicações escritas para serem executadas em uma grade gerenciada
+pelo \textit{BOINC} são feitas usando a API do  \textit{BOINC}. Porém, como não existe
+um \textit{binding} da API do BOINC para a linguagem \textit{R}, 
+para a execução de programas nesta linguagem somos obrigados a utilizar
+um wrapper. Um wrapper é um programa feito utilizando a API do BOINC
+que lê um arquivo XML com as informações de execução de um programa
+e o wrapper executa esse programa.  
 
-\begin{Def}
-Let ${M}(X)$ be some parameterization of the spatial distribution of detail
-in the image $X$. The spatial pattern spectrum ${S}_{{M},\alpha}$ is
-then defined as
-\begin{equation}
-  ({S}_{{M},\alpha}(X))(r) = {M}(\alpha_r(X) \setminus \alpha_{r+}(X)).
-\end{equation}  
-\end{Def}
+Utilizando o wrapper, colocamos como parâmetro um programa em C 
+que chama o interpretador \textit{R} junto com o programa em \textit{R}
+que queremos executar. É necessário que tanto o wrapper
+quanto o programa em C sejam compilados para a plataforma na qual será executado. 
+Já o interpretador e os arquivos de entrada são os mesmos para ambos os sistemas.
 
-An obvious parameterization of the spatial distribution is through 
-the use of moments. Focusing on the case of 2-D binary images, the 
-moment $m_{ij}$ of order $ij$ of an image $X$ is given by
-\begin{equation}
-  m_{ij}(X) = \sum_{(x,y) \in \mathbf X} x^i y^j.
-\end{equation}  
-The spatial moment spectrum $S_{m_{ij},\alpha}$ of order $ij$ is
-\begin{equation}
-  (S_{m_{ij},\alpha}(X))(r) = m_{i,j}(\alpha_r(X) \setminus \alpha_{r^+}(X)).
-\end{equation}  
-For $i=0$ and $j=0$ we obtain the standard pattern spectrum. 
-For each $r$, $(S_{m_{ij},\alpha}(X))(r)$ is just the moment of an image, 
-therefore, derived parameters such as coordinates of the centre of mass, 
-(co-)variances, skewness and kurtosis of the distribution of details at each
-scale can be computed easily. We can then define pattern mean
-spectra, pattern (co-)variance spectra, pattern kurtosis spectra, etc. The 
-pattern mean-$x$ and variance-$x$ spectra 
-($S_{\bar x,\alpha}$ and $S_{\sigma(x),\alpha}$) are defined as: 
-\begin{align}
-  S_{\bar x,\alpha} & = \frac{S_{m_{10},\alpha}} {S_{m_{00},\alpha}} \\
-\intertext{and}
-   S_{\sigma(x),\alpha} & = \sqrt{\frac{S_{m_{20},\alpha}}
-                                 {S_{m_{00},\alpha}} 
-                                 - S_{\bar x, \alpha}}.  
- \end{align}
-These two are shown in Figures \ref{fig:tauspect} and \ref{fig:binspect}. Note that 
-these definitions hold only where $(S_{m_{00},\alpha}(f))(r) \neq 0$. For all 
-other values of $r$ they will be defined as zero. Further post-processing can
-be done to compute central moments and moment invariant from pattern moment 
-spectra \cite{Flusser:Suk:93,Hu:62}. 
+\section{Resultados e discussão}
 
-\section{An Algorithm}
+A parte do servidor já está implementado e em funcionamento. A instalação
+dos clientes está em fase de implantação na Rede CEC do IME-USP e em breve 
+a grade estará em seu pleno funcionamento.
 
-Nacken \cite{Nacken:thesis} derived an algorithm for computation
-of pattern spectra for granulometries based on openings by discs of increasing
-radius for various metrics, using the opening transform. After the
-opening transform has been computed, it is straightforward to compute the 
-pattern spectrum:
-\begin{itemize}
-\item Set all elements of array {\tt S} to zero
-\item For all $x \in X$ increment {\tt S}[$\Omega_X(x)$] by one. 
-\end{itemize}
-
-To compute the pattern \emph{moment} spectrum, the only thing that needs to be
-changed is the way {\tt S}[$\Omega_X(x)$] is incremented. As shown in Algorithm
-\ref{alg:spect}.
-
-\begin{algorithm}
-\begin{itemize}
-\item Set all elements of array {\tt S} to zero
-\item For all $(x,y) \in X$ increment {\tt S}[$\Omega_X(x,y)$] by 
-$x^iy^j$. 
-\end{itemize}
-\caption{ Algorithm for computation of pattern moment
-spectrum of order $ij$. \label{alg:spect}}
-\end{algorithm}
-
-This algorithm can 
-readily be adapted to other granulometries, simply by computing the 
-appropriate opening transform.
-
+\section{Conclusão}
  
-
-
-
-\section{Discussion}
-Spatial pattern spectra form a useful supplement to ordinary pattern 
-spectra, because of their ability to retain spatial information.  
-Pattern moment spectra, in particular, are easily computed concurrently with 
-computation of the standard pattern spectrum. Post-processing of these pattern
-moment spectra can be done to yield a number of easily interpreted spectra, 
-such as pattern mean, variance, skew, and kurtosis spectra, which have reduced 
-covariance compared to the ``raw'' pattern moment spectra. Invariance to 
-rotation, translation or scale change can also be achieved by post-processing
-\cite{Flusser:Suk:93,Hu:62}.
-
-In the future grey scale versions of these spatial pattern spectra will be 
-developed. I expect that the efficient grey level algorithms for area and
-attribute pattern spectra  
-\cite{Meijster:Wilkinson:PAMI}
-can be adapted to spatial pattern spectra as well.
+O objetivo está bem próximo de ser concluído: só é necessário terminar a implantação
+na rede e fazer o anúncio pedindo trabalhos para serem executados na grade. Outro ponto
+interessante é que é possível ajudar no processamento usando tanto máquinas com sistemas
+Linux quanto Windows o que não foi feito nos outros trabalhos semelhantes citados no projeto.  
  
 %%% References
 
 %% Note: use of BibTeX als works!!
 
-\bibliographystyle{plain}
-\begin{thebibliography}{1}
+\bibliographystyle{amsalpha}
+\bibliography{bibliografia}
 
-\bibitem{Flusser:Suk:93}
-J.~Flusser and T.~Suk.
-\newblock Pattern recognition by affine moment invariants.
-\newblock {\em Pattern Recognition}, 26:167--174, 1993.
-
-\bibitem{Hu:62}
-M.~K. Hu.
-\newblock Visual pattern recognition by moment invariants.
-\newblock {\em IRE Transactions on Information Theory}, IT-8:179--187, 1962.
-
-\bibitem{maragos89:_patter}
-P.~Maragos.
-\newblock Pattern spectrum and multiscale shape representation.
-\newblock {\em IEEE Trans. Patt. Anal. Mach. Intell.}, 11:701--715, 1989.
-
-\bibitem{Meijster:Wilkinson:PAMI}
-A.~Meijster and M.~H.~F. Wilkinson.
-\newblock A comparison of algorithms for connected set openings and closings.
-\newblock {\em IEEE Trans. Patt. Anal. Mach. Intell.}, 24(4):484--494, 2002.
-
-\bibitem{Nacken:thesis}
-P.~F.~M. Nacken.
-\newblock {\em Image Analysis Methods Based on Hierarchies of Graphs and
-  Multi-Scale Mathematical Morphology}.
-\newblock PhD thesis, University of Amsterdam, Amsterdam, The Netherlands,
-  1994.
-
-\end{thebibliography}
 
 \end{multicols}
 
