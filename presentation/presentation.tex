@@ -1,0 +1,81 @@
+\documentclass{beamer}
+\usepackage[brazil]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8x]{inputenc} 
+%\usepackage[all]{xy}
+\PrerenderUnicode{ç}
+
+\setbeamercovered{transparent=5}
+
+\usetheme{Antibes}
+
+\title{BOINC + R: Executando rotinas de bioinformática em grades oportunistas}
+
+\author{Rodrigo L. M. Flores \\ \url{flores@ime.usp.br}}
+
+
+\institute{Instituto de Matemática e Estatística\\Universidade de São Paulo}
+
+\begin{document}
+
+\date{\today}
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\section{Introdução}
+
+\begin{frame}
+  \frametitle{Bioinformática}
+  \begin{itemize}
+    \item Aplicação de técnicas computacionais e matemáticas para generação, gerenciamento e análise de bioinformação 
+    \item Análise de expressão de genes de dados, Clustering
+    \item Algoritmos combinatórios e custosos
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computação em grade}
+  \begin{itemize}
+    \item Clusters dedicados: caros e específicos;
+    \item Computadores pessoais em um laboratório ociosos na maior parte do tempo
+    \item Não há necessidade de se comprar novos equipamentos
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computação voluntária}
+  \begin{itemize}
+    \item Slogan: ``Doe seus ciclos de CPU para um projeto'';
+    \item Normalmente projetos com apelo ``humanitário'' (pesquisas de enovelamento de proteínas, malária, descoberta de vida extraterrestre, resolução de instâncias grandes do N-Rainhas, etc);
+    \item Computação em grade cuja rede em comum é a Internet; 
+    \item Vontade de entrar na rede é do dono do computador;
+    \item É possível configurar para que os ciclos de CPU sejam doados se o computador estiver ocioso, se estiver funcionando na energia elétrica, ou programar perfis diferentes em horários ou dias da semana
+    \item Exemplos de projetos: SETI@HOME, Folding At Home, N Queens At Home, World Community Grid
+    \item Projetos consolidados e funcionando a anos
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Uso de computação voluntária para processamento grades de computadores}
+  \begin{itemize}
+    \item Idéia surgiu na Universidade de Extremadura, Espanha
+    \item Computadores são de uma empresa ou instituição, e a decisão de como eles devem ser utilizados, não são apenas mas sim de uma instituição
+    \item Utilização de uma rede de laboratórios
+  \end{itemize}
+\end{frame}
+
+
+\section{Ferramentas utilizadas}
+
+\section{Resultados}
+
+\section{Discussão}
+
+\section{Conclusão}
+
+\end{document}
+
+
+% vim:set ts=2 expandtab:
