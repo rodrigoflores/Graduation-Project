@@ -17,7 +17,8 @@
  
 % insert correct institute name
 \institute{Instituto de Matemática e Estatística\\
-           Universidade de São Paulo\\}
+           Universidade de São Paulo\\
+           }
 
 \email{\{flores, hirata\}@ime.usp.br}  % shows author email address below institute
 
@@ -43,6 +44,9 @@
 \begin{multicols}{2}
 
 %%% Abstract
+
+Palavras chave: BOINC, R, Bioinformática, Computação em grade
+
 \begin{abstract}
 O \textit{R} é um ambiente poderoso para análise e visualização de dados em bioinformática.  
 Porém, muitas rotinas de análise são combinatórias, o que demanda muitos recursos computacionais. 
@@ -84,15 +88,17 @@ Como a API do \textit{BOINC} funciona para poucas linguagens, foi necessária a 
 executar as rotinas em R, colocamos como parâmetro um outro programa que apenas chama a função do C, system e usando como parâmetro o caminho 
 do interpretador junto com o script. 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
   \centering
-  \includegraphics[scale=0.8]{boinc-schema.png}
+  \includegraphics[scale=0.7]{boinc-schema.png}
   \caption{Funcionamento do \textit{BOINC}}
   \label{boinc_funcionamento}
 \end{figure}
 
 
 \section{Funcionamento do BOINC com a linguagem \textit{R}}
+
+
 
 O \textit{BOINC} funciona da seguinte maneira: criado um \textit{workunit} que é um conjunto de dados de entrada para uma aplicação, 
 o cliente se conecta no servidor, faz o download dos arquivos executáveis da aplicação e dos dados de entrada. Após isso, 

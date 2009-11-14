@@ -72,6 +72,7 @@
 
 \begin{frame}
   \frametitle{BOINC}
+  %Colocar Logo
   \begin{itemize}
     \item Um produto do projeto SETI@HOME (que infelizmente falhou em achar vida inteligente fora da terra)
     \item Middleware que possui suporte a vários projetos 
@@ -84,15 +85,114 @@
   \begin{itemize}
     \item Linguagem de programação interpretada, baseada na linguagem S e com enfoque estatístico
     \item Muito utilizada na área de bioinformática
+    \item Possibilidade de se compartilhar módulos (há mais de mil pacotes disponíveis para download) 
   \end{itemize}
 
 \end{frame}
 
-\section{Resultados}
+\begin{frame}
+  \frametitle{Servidor}
+  \begin{itemize}
+    \item Hardware: AMD Athlon X2 4600+, 4GB de RAM %Confirmar
+    \item Sistema Debian GNU/Linux
+    \item BOINC Server versão 6.7.0
+  \end{itemize}
+\end{frame}
 
-\section{Discussão}
+\begin{frame}
+  \frametitle{Clientes}
+  \begin{itemize}
+    \item 1 máquina Windows
+    \item 3 máquinas Linux
+    \item Em processo de expansão (rede em ``reforma'')
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Aplicações Legadas}
+  \begin{itemize}
+    \item Aplicações já compiladas
+    \item Não há a necessidade de conhecer ou alterar o código
+    \item Uso do wrapper
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Wrapper}
+  \begin{itemize}
+    \item Programa feito com a API do Boinc que lê um XML (chamado job.xml)  com informações de como executar um executável
+    \item Disponível para Linux e Windows
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Job.xml}
+  Opções mais utilizadas:
+ \begin{verbatim}
+ <job_desc>
+    <task>
+        <application>runner</application>
+        (opcional) <stdout_filename>stdout</stdout_filename>
+        (opcional) <stderr_filename>stderr</stderr_filename>
+        (opcional) <stdin_filename>stdin</stdin_filename> 
+        (opcional) <command_line>--help</command_line>
+    </task>
+  </job_desc>
+  \end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{No nosso caso...}
+  \begin{itemize}
+    \item[Application] Aplicação compilada que possui apenas uma chamada de sistema chamando o interpretador + script
+    \item{std\*} Arquivo de entrada (in), saída (out), saída de erro (err)
+    \item{command_line} Parâmetros de linha de comando
+  \end{itemize}
+\end{frame}
+
+\section{Discussão e resultados} 
+
+\begin{frame}
+  \frametitle{Sistema Linux}
+  \begin{itemize}
+    \item Processo simples de compilação (via makefile)
+    \item Possibilidade de usar o truque do \textit{shebang}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sistema Windows}
+  \begin{itemize}
+    \item Processo de compilação mais complexo (via Microsoft Visual C++)
+    \item Configuração de compilação do wrapper com problema
+    \item Dificuldades
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Instalação na rede do CEC}
+  \begin{itemize}
+    \item Instalação simples no sistema Linux e no Windows
+    \item Reforma na rede do CEC
+    \item No momento 3 máquinas Linux e 1 máquina Windows instalada
+    \item Instalação não finalizada
+  \end{itemize}
+\end{frame}
 
 \section{Conclusão}
+
+\begin{frame}
+  \frametitle{Agradecimentos}
+  \begin{itemize}
+    \item Prof. Dr. Roberto Hirata Jr.
+    \item Prof. Dr. Alfredo Goldman
+    \item Rodrigo Assirati Dias
+    \item Nicolás Alvarez e Yoyo (desenvolvedores do BOINC)
+    \item Gislaine Olivi e Janio Matsuura (administradores do CEC)
+  \end{itemize}
+\end{frame}
 
 \end{document}
 
