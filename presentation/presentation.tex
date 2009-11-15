@@ -123,6 +123,10 @@
     \item Programa feito com a API do Boinc que lê um XML (chamado job.xml)  com informações de como executar um executável
     \item Disponível para Linux e Windows
   \end{itemize}
+  \begin{figure}
+    \includegraphics[scale=0.15]{boinc-diagram-wrapper.png}
+  \end{figure}
+  
 \end{frame}
 
 \begin{frame}[fragile]
@@ -131,11 +135,11 @@
  \begin{verbatim}
  <job_desc>
     <task>
-        <application>runner</application>
-        (opcional) <stdout_filename>stdout</stdout_filename>
-        (opcional) <stderr_filename>stderr</stderr_filename>
-        (opcional) <stdin_filename>stdin</stdin_filename> 
-        (opcional) <command_line>--help</command_line>
+      <application>runner</application>
+      <stdout_filename>stdout</stdout_filename>
+      <stderr_filename>stderr</stderr_filename>
+      <stdin_filename>stdin</stdin_filename> 
+      <command_line>--help</command_line>
     </task>
   </job_desc>
   \end{verbatim}
@@ -146,9 +150,9 @@
 \begin{frame}
   \frametitle{No nosso caso...}
   \begin{itemize}
-    \item[Application] Aplicação compilada que possui apenas uma chamada de sistema chamando o interpretador + script
-    \item{std\*} Arquivo de entrada (in), saída (out), saída de erro (err)
-    \item{command_line} Parâmetros de linha de comando
+    \item \emph{Application} Aplicação compilada que possui apenas uma chamada de sistema chamando o interpretador + script
+    \item \emph{std\*} Arquivo de entrada (in), saída (out), saída de erro (err)
+    \item \emph{command\_line} Parâmetros de linha de comando
   \end{itemize}
 \end{frame}
 
@@ -167,7 +171,7 @@
   \begin{itemize}
     \item Processo de compilação mais complexo (via Microsoft Visual C++)
     \item Configuração de compilação do wrapper com problema
-    \item Dificuldades
+    \item Pequenas dificuldades relacionadas ao sistema
   \end{itemize}
 \end{frame}
 
@@ -177,11 +181,53 @@
     \item Instalação simples no sistema Linux e no Windows
     \item Reforma na rede do CEC
     \item No momento 3 máquinas Linux e 1 máquina Windows instalada
-    \item Instalação não finalizada
+    \item Instalação não finalizada (mas em andamento)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vantagens}
+  \begin{itemize}
+    \item Facilidade de se adicionar novos nós;
+    \item Processamento multiplataforma;
+    \item Código aberto;
+    \item Usuário não percebe que há uma tarefa executando;
+    \item Solução funciona para qualquer linguagem de script;
+    \item Solução boa para muitos workunits que gastam pouco tempo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame} 
+  \frametitle{Desvantagens}
+  \begin{itemize}
+    \item Necessidade de se ter o R instalado;
+    \item Não há checkpoint;
+    \item Solução não é boa para poucos workunits que gastam muito tempo; 
   \end{itemize}
 \end{frame}
 
 \section{Conclusão}
+
+\begin{frame}
+  \frametitle{Conclusões}
+  \begin{itemize}
+    \item Solução funciona;
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Próximos passos}
+  \begin{itemize}
+    \item Benchmark da grade e comparação com a grade com o mesmo propósito descrita no artigo %Artigo do Rodrigo
+    \item Tentar o uso da GPU para aumentar o processamento;
+    \item Comparação com o gasto energético deste tipo de grade com o gasto de processamento de uma grade ``alugada'';
+    \item Analisar o desempenho dos dois sistemas utilizados
+    \item Escrita de um artigo para ficar disponível na webpage do BOINC como alternativa da computação em grade;
+    \item Disponibilizar a grade para submissões da comunidade científica;
+  \end{itemize}
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{Agradecimentos}
