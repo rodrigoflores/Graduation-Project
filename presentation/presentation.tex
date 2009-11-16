@@ -149,18 +149,20 @@
 \begin{frame}
   \frametitle{Implementações da solução}
   \begin{block}{Sistema Linux}
-  \begin{itemize}
-    \item Processo simples de compilação (via makefile)
-    \item Possibilidade de usar o truque do \textit{shebang} e usar o script como binário
-  \end{itemize}
+    \begin{itemize}
+      \item Processo simples de compilação (via makefile)
+      \item Possibilidade de usar o truque do \textit{shebang} e usar o script como binário
+    \end{itemize} 
+  \end{block}
 
   \begin{block}{Sistema Windows}
-  \begin{itemize}
-    \item Processo de compilação mais complexo (via Microsoft Visual C++)
-    \item Configuração de compilação do wrapper com problema
-    \item Uso do interpretador como binário
-    \item Pequenas dificuldades relacionadas ao sistema
-  \end{itemize}
+    \begin{itemize}
+      \item Processo de compilação mais complexo (via Microsoft Visual C++)
+      \item Configuração de compilação do wrapper com problema
+      \item Uso do interpretador como binário
+      \item Pequenas dificuldades relacionadas ao sistema
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -202,7 +204,6 @@
     \item Solução funciona;
     \item Único computador inutilizado foi o servidor;
     \item Custo baixo;
-    \item Facilidade de instalação e configuração;
     \item Dificuldade do uso do Wrapper e mensagens de erro pouco amigáveis 
   \end{itemize}
 \end{frame}
@@ -210,12 +211,12 @@
 \begin{frame}
   \frametitle{Próximos passos}
   \begin{itemize}
-    \item Benchmark da grade e comparação com a grade com o mesmo propósito descrita no artigo \cite{Dias}
+    \item Benchmark da grade e comparação com a grade com o mesmo propósito descrita no artigo \cite{Dias};
     \item Tentar o uso da GPU para aumentar o processamento;
     \item Comparação com o gasto energético deste tipo de grade com o gasto de processamento de uma grade ``alugada'';
-    \item Analisar o desempenho dos dois sistemas utilizados
+    \item Analisar o desempenho dos dois sistemas utilizados;
     \item Escrita de um artigo para ficar disponível na webpage do BOINC como alternativa da computação em grade;
-    \item Uso de máquinas virtuais 
+    \item Uso de máquinas virtuais; 
     \item Disponibilizar a grade para submissões da comunidade científica;
   \end{itemize}
 \end{frame}
