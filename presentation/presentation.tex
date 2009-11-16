@@ -7,7 +7,7 @@
 
 \setbeamercovered{transparent=5}
 
-\usetheme{Antibes}
+\usetheme{Marburg}
 
 \title{BOINC + R: Executando rotinas de bioinformática em grades oportunistas}
 
@@ -29,7 +29,7 @@
 \begin{frame}
   \frametitle{Bioinformática}
   \begin{itemize}
-    \item Aplicação de técnicas computacionais e matemáticas para generação, gerenciamento e análise de bioinformação 
+    \item Aplicação de técnicas computacionais e matemáticas para geração, gerenciamento e análise de bioinformação 
     \item Análise de expressão de genes de dados, Clustering
     \item Algoritmos combinatórios e custosos
   \end{itemize} 
@@ -73,15 +73,24 @@
 \begin{frame}
   \frametitle{BOINC}
   %Colocar Logo
+    \begin{figure}
+      \includegraphics[scale=0.3]{boinc.png}
+    \end{figure}
+  
   \begin{itemize}
     \item Um produto do projeto SETI@HOME (que infelizmente falhou em achar vida inteligente fora da terra)
     \item Middleware que possui suporte a vários projetos 
     \item Software Livre (tanto no servidor como no cliente)
   \end{itemize}
+
+  
 \end{frame}
 
 \begin{frame}
   \frametitle{R}
+  \begin{figure}
+    \includegraphics[scale=0.25]{R.png}
+  \end{figure}
   \begin{itemize}
     \item Linguagem de programação interpretada, baseada na linguagem S e com enfoque estatístico
     \item Muito utilizada na área de bioinformática
@@ -110,12 +119,14 @@
 
 \begin{frame}
   \frametitle{Aplicações Legadas}
+  \begin{block}{Aplicações legadas}
   \begin{itemize}
     \item Aplicações já compiladas
     \item Não há a necessidade de conhecer ou alterar o código
     \item Uso do wrapper
   \end{itemize}
-  \begin{block}<1>{Wrapper}
+  \end{block}
+  \begin{block}{Wrapper}
     \begin{itemize}
       \item Programa feito com a API do Boinc que lê um XML (chamado job.xml)  com informações de como executar um executável
       \item Disponível para Linux e Windows
@@ -136,18 +147,18 @@
 \section{Discussão e resultados} 
 
 \begin{frame}
-  \frametitle{Sistema Linux}
+  \frametitle{Implementações da solução}
+  \begin{block}{Sistema Linux}
   \begin{itemize}
     \item Processo simples de compilação (via makefile)
-    \item Possibilidade de usar o truque do \textit{shebang}
+    \item Possibilidade de usar o truque do \textit{shebang} e usar o script como binário
   \end{itemize}
-\end{frame}
 
-\begin{frame}
-  \frametitle{Sistema Windows}
+  \begin{block}{Sistema Windows}
   \begin{itemize}
     \item Processo de compilação mais complexo (via Microsoft Visual C++)
     \item Configuração de compilação do wrapper com problema
+    \item Uso do interpretador como binário
     \item Pequenas dificuldades relacionadas ao sistema
   \end{itemize}
 \end{frame}
@@ -214,6 +225,7 @@
 \begin{frame}
   \frametitle{Agradecimentos}
   \begin{itemize}
+    \item CNPq
     \item Prof. Dr. Roberto Hirata Jr.
     \item Prof. Dr. Alfredo Goldman
     \item Prof. Dr. Roberto Marcondes
