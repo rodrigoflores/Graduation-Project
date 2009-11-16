@@ -60,7 +60,7 @@
 \begin{frame}
   \frametitle{Uso de computação voluntária como uma grade}
   \begin{itemize}
-    \item Idéia surgiu na Universidade de Extremadura, Espanha
+    \item Baseado no artigo \cite{boinc}
     \item Computadores são de uma empresa ou instituição, e a decisão de como eles devem ser utilizados, não são apenas mas sim de uma instituição
     \item Utilização de uma rede de laboratórios para isto
     \item Possibilidade de executar projetos próprios ou projetos já existentes
@@ -91,21 +91,21 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Servidor}
-  \begin{itemize}
-    \item Hardware: AMD Athlon X2 4600+, 4GB de RAM %Confirmar
-    \item Sistema Debian GNU/Linux
-    \item BOINC Server versão 6.7.0
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Clientes}
+  \frametitle{Hardware}
+  \begin{block}{Servidor}
+    \begin{itemize}
+      \item Hardware: AMD Athlon X2 4600+, 4GB de RAM %Confirmar
+      \item Sistema Debian GNU/Linux
+      \item BOINC Server versão 6.7.0
+    \end{itemize}
+  \end{block}
+  \begin{block}{Clientes}
   \begin{itemize}
     \item 1 máquina Windows
     \item 3 máquinas Linux
     \item Em processo de expansão (rede em ``reforma'')
   \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -115,45 +115,22 @@
     \item Não há a necessidade de conhecer ou alterar o código
     \item Uso do wrapper
   \end{itemize}
+  \begin{block}<1>{Wrapper}
+    \begin{itemize}
+      \item Programa feito com a API do Boinc que lê um XML (chamado job.xml)  com informações de como executar um executável
+      \item Disponível para Linux e Windows
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Wrapper}
-  \begin{itemize}
-    \item Programa feito com a API do Boinc que lê um XML (chamado job.xml)  com informações de como executar um executável
-    \item Disponível para Linux e Windows
-  \end{itemize}
   \begin{figure}
-    \includegraphics[scale=0.15]{boinc-diagram-wrapper.png}
+    \includegraphics[scale=0.15]<1>{boinc-diagram-normal.png}
   \end{figure}
-  
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Job.xml}
-  Opções mais utilizadas:
- \begin{verbatim}
- <job_desc>
-    <task>
-      <application>runner</application>
-      <stdout_filename>stdout</stdout_filename>
-      <stderr_filename>stderr</stderr_filename>
-      <stdin_filename>stdin</stdin_filename> 
-      <command_line>--help</command_line>
-    </task>
-  </job_desc>
-  \end{verbatim}
-\end{frame}
-
-
-
-\begin{frame}
-  \frametitle{No nosso caso...}
-  \begin{itemize}
-    \item \emph{Application} Aplicação compilada que possui apenas uma chamada de sistema chamando o interpretador + script
-    \item \emph{std\*} Arquivo de entrada (in), saída (out), saída de erro (err)
-    \item \emph{command\_line} Parâmetros de linha de comando
-  \end{itemize}
+  \begin{figure}
+    \includegraphics[scale=0.15]<2>{boinc-diagram-wrapper.png}
+  \end{figure}
 \end{frame}
 
 \section{Discussão e resultados} 
@@ -186,7 +163,8 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Vantagens}
+  \frametitle{Vantagens e desvantagens}
+  \begin{block}{Vantagens}
   \begin{itemize}
     \item Facilidade de se adicionar novos nós;
     \item Processamento multiplataforma;
@@ -195,16 +173,15 @@
     \item Solução funciona para qualquer linguagem de script;
     \item Solução boa para muitos workunits que gastam pouco tempo.
   \end{itemize}
-\end{frame}
-
-\begin{frame} 
-  \frametitle{Desvantagens}
+  \end{block}
+  \begin{block}{Desvantagens}
   \begin{itemize}
     \item Necessidade de se ter o R instalado;
     \item Não há checkpoint;
-    \item Solução não é boa para poucos workunits que gastam muito tempo; 
   \end{itemize}
+  \end{block}
 \end{frame}
+
 
 \section{Conclusão}
 
@@ -212,17 +189,22 @@
   \frametitle{Conclusões}
   \begin{itemize}
     \item Solução funciona;
+    \item Único computador inutilizado foi o servidor;
+    \item Custo baixo;
+    \item Facilidade de instalação e configuração;
+    \item Dificuldade do uso do Wrapper e mensagens de erro pouco amigáveis 
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Próximos passos}
   \begin{itemize}
-    \item Benchmark da grade e comparação com a grade com o mesmo propósito descrita no artigo %Artigo do Rodrigo
+    \item Benchmark da grade e comparação com a grade com o mesmo propósito descrita no artigo \cite{Dias}
     \item Tentar o uso da GPU para aumentar o processamento;
     \item Comparação com o gasto energético deste tipo de grade com o gasto de processamento de uma grade ``alugada'';
     \item Analisar o desempenho dos dois sistemas utilizados
     \item Escrita de um artigo para ficar disponível na webpage do BOINC como alternativa da computação em grade;
+    \item Uso de máquinas virtuais 
     \item Disponibilizar a grade para submissões da comunidade científica;
   \end{itemize}
 \end{frame}
@@ -234,10 +216,18 @@
   \begin{itemize}
     \item Prof. Dr. Roberto Hirata Jr.
     \item Prof. Dr. Alfredo Goldman
+    \item Prof. Dr. Roberto Marcondes
     \item Rodrigo Assirati Dias
+    \item Rodrigo Bernardo Pimentel
     \item Nicolás Alvarez e Yoyo (desenvolvedores do BOINC)
     \item Gislaine Olivi e Janio Matsuura (administradores do CEC)
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Referências}
+  \bibliographystyle{amsalpha}
+  \bibliography{bibliografia}
 \end{frame}
 
 \end{document}
