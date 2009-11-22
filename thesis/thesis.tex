@@ -206,49 +206,31 @@ sigla de \textit{Comprehensible R Archive Network}) com as mais diversas funçõ
 Outro repositório bastante utilizado é o Bioconductor, que provê rotinas bastante utilizadas para o processamento
 de dados da área de bioinformática.
 
+\input{introducao.tex}
+
+\section{Conceitos e tecnologias utilizadas}
+
+\input{conceitos_ferramentas.tex}
+
 \section{Atividades realizadas}
 
-O início do projeto deu-se ainda em 2008, com a visita ao colégio Rainha da Paz na Lapa, onde o aluno de mestrado do \textit{IME}
-Rodrigo Assirati Dias mantém uma grade de computadores com o middleware \textit{Alchemi} citada no trabalho %Artigo do Rodrigo
-. Nesta visita foi possível esclarecer dúvidas, entender o funcionamento da grade e receber algumas dicas quanto à manutenção da grade. 
-Após esse encontro, começou-se a buscar alternativas para o a computação de alta performance com o \textit{R}. Um primeiro pacote encontrado
-que fazia esta função foi o \textit{GridR}, que permite submeter rotinas do \textit{R} para \textit{clusters}, máquinas remotas e 
-grades. Um dos arcabouços possíveis para o uso deste pacote é o Condor %Colocar link 
-, desenvolvido pela \textit{University of Wisconsin-Madison} e é bastante utilizado em empresas
-de grande porte como a \textit{NASA} e pode ser executado tanto em sistemas
-baseados em \textit{UNIX}, como em sistemas \textit{Windows}. Seguindo esta busca, encontramos o 
-\textit{middleware} \textit{BOINC}, no artigo %Referência do BOINC
-sendo utilizado para um propósito semelhante em um trabalho na Universidade de Extremadura, na Espanha 
-e decidimos que a abordagem seria interessante para nosso trabalho.
-
-Escolhido o \textit{middleware} nos focamos na instalação do servidor. A própria página do \textit{BOINC} 
-possui um guia de instalação do servidor do \textit{middleware} no sistema \textit{Debian GNU\\Linux} e por
-esta distribuição \textit{Linux} ser bastante conhecida por sua estabilidade, foi instalado este sistema no servidor.
-Instalado o servidor, o foco foi em ter uma aplicação em R executando remotamente em uma grade de computadores. 
-Este processo no sistema Linux foi relativamente simples: utilizando o ``truque do \textit{shebang}'' é possível 
-colocar um script como executável e o \textit{wrapper} executá-lo como se fosse um arquivo compilado. Já para
-o sistema Windows %Colocar marca registrada
-o trabalho foi mais complicado: havia um bug nas configurações de compilação do \textit{wrapper} e até perceber isso
-atrasou bastante o andamento do projeto. Passado isso, foi necessário utilizar um programa escrito em C, que apenas executava 
-o interpretador junto com o arquivo com a rotina em \textit{R}.
-
-Finalizado esta parte, nos focamos na aplicação a ser executada na grade. Para isso foi criado um programa em \textit{R} que
-apenas acessava um arquivo e fazia alguns cálculos custosos. Isto foi então configurado para o mesmo programa poder
-ser executado tanto em sistemas Windows como em sistemas Linux. Paralelamente a isso, foi pedido para a administração
-da rede do \textit{CEC} para instalar o \textit{BOINC} nas máquinas da rede.
+\input{atividades.tex}
 
 \section{Resultados e produtos obtidos}
 
 
+\input{resultados.tex}
+
 
 \section{Conclusões}
-
 
 \bibliographystyle{amsalpha}
 \bibliography{bibliografia}
 
 
 \newpage
+
+\input{conclusoes.tex}
 
 \part{Parte subjetiva}
 
@@ -276,6 +258,9 @@ e muitos dos conceitos aprendidos neste curso ajudaram o entendimento melhor de 
   \item \textbf{MAC422 - Sistemas Operacionais} Saber como um programa é executado, como o sistema gerencia essas execução e como a tabela de processos
 funciona é essencial quando se trabalha com uma grade de computadores.  
 \end{itemize}
+
+\input{subjetiva.tex}
+
 
 % desafios e frustrações encontrados;
 % lista das disciplinas cursadas no BCC mais relevantes para o trabalho;
