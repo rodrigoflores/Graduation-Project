@@ -1,0 +1,88 @@
+O principal resultado deste trabalho foi fazer o \emph{Boinc} funcionar com rotinas em \emph{R}, tanto
+nos ambientes \emph{Linux} como no ambiente \emph{Windows} % colocar marca registrada
+
+\subsection{Sistema Linux}
+
+Para o ambiente \emph{Linux}, foi relativamente simples o processo: dado um arquivo com rotinas
+do \emph{R} a serem executadas, é somente necessário alterar a permissão do arquivo para executável 
+(via \verb#chmod +x arquivo.R#) e adicionar a seguinte linha na primeira linha do arquivo:
+
+\begin{verbatim}
+#!/usr/bin/Rscript
+\end{verbatim}
+
+Isso faz um sistema \emph{Linux} chamar o interpretador \emph{Rscript} para interpretar as rotinas 
+em \emph{R} e assim executar o arquivo. Esta solução permite não só que rotinas em \emph{R} sejam
+executadas, mas sim qualquer script que tenha seu interpretador descrito na primeira linha.
+
+A esta solução, demos o nome de \emph{Truque do Shebang}, pelos caracteres \verb'#!' serem chamados
+de \emph{shebang}. Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
+Windows no sistema Linux.
+
+\subsection{Sistema Windows} %Marca registrada
+
+Como o sistema Windows não permite utilizar scripts utilizando o \emph{shebang}, foi necessário 
+utilizar um programa compilado escrito na linguagem C, que chamamos de \emph{Runner}, 
+que usando a função \verb#system#, chama o interpretador com o arquivo.R como parâmetro. 
+
+Esta solução permite inclusive que usemos scripts diferentes de R a cada vez que criamos um 
+\emph{workunit}, assim como adicionar arquivos extra que por ventura fossem necessários para
+o processamento. Esta maneira também funciona no \emph{Linux}, só que o \emph{Runner} precisar
+ser compilado para o \emph{Linux} com o caminho para o interpretador correto. O programa não faz
+uma verificação para perceber se o \emph{R} está instalado. 
+
+A utilização do \emph{Runner} foi necessário devido ao \emph{Wrapper} não perceber corretamente
+que o interpretador foi executado sem erros e mesmo em execuções sem erros, o \emph{wrapper} 
+recebia um valor de retorno do interpretador diferente de zero, o que ele percebia como um erro
+e marcava o \emph{workunit} como inválido.
+
+\subsection{Discussão}
+
+\subsubsection{Vantagens} 
+
+As principais vantagens no uso do \emph{Boinc} para o processamento em grade são:
+
+\begin{itemize}
+  \item \textbf{Facilidade de se adicionar novos nós} - A instalação do BOINC em ambos os sistemas Linux e Windows é simples
+e fácil de ser feita e nenhuma ação no servidor é necessária a cada instalação de nós. Além disso, é muito simples fazer
+a replicação de configurações, tanto para o processamento, quanto para a conexão com o servidor para os computadores;
+  \item \textbf{Processamento multiplataforma} - Para a grade funcionar na plataforma só são necessárias duas coisas: 
+que o BOINC e o \emph{R} estejam disponível para a plataforma. As plataformas mais comuns 
+(Linux $32$ e $64$ bits e Microsoft Windows) têm ambos os projetos disponíveis;
+  \item \textbf{Código aberto} - A utilização de dois softwares com código aberto facilita bastante: a 
+busca de bugs se torna possível, a gratuidade dos softwares e a grande quantidade de documentação, muitas vezes produzidas por
+pessoas que não necessariamente são da equipe de desenvolvimento do \emph{BOINC}. A mentalidade de ajuda mútua, existente nas
+listas de discussão na no canal de IRC do projeto também é de grande ajuda; 
+  \item \textbf{Execução invisível ao usuário} - Com o \emph{BOINC} configurado para isso, um usuário comum da rede nem ao menos 
+percebe a existência de um processamento em grade. É possível configurar o \emph{BOINC} para só começar a execução com o computador ocioso
+há um número arbitrário de minutos. Também é possível configurar para o processamento só acontecer em determinadas 
+faixas de horários e dias da semana. Outra configuração interessante é a determinação do máximo de memória 
+\emph{RAM} e de espaço em disco para a execução. 
+  \item \textbf{Solução funciona para qualquer linguagem de script} - De maneira análoga, é possível executar qualquer programa escrito em 
+linguagem interpretada com o BOINC utilizando esta mesma solução. Como comentado antes, só é necessário que exista uma versão do interpretador
+para as plataformas necessárias (o que é comum para as linguagens mais utilizadas como \emph{PERL}, \emph{Python} e 
+\emph{Ruby} e as plataformas mais comuns). 
+
+\end{itemize}
+
+\subsubsection{Desvantagens}
+
+As principais desvantagens são:
+
+\begin{itemize}
+  \item \textbf{Necessidade de se ter o \emph{R} instalado} - O \emph{R} não é uma linguagem instalada por padrão
+nas distribuições Linux mais populares, nem no \emph{Windows}. Então, a adição de um nó só pode ser feita se o \emph{R}
+for também instalado. 
+  \item \textbf{Falta de checkpoints} - Utilizando um aplicativo feito com a \emph{API} do \emph{BOINC} é possível se ter
+\emph{Checkpoints}, que são uma maneira de uma aplicação feita com o \emph{BOINC} reiniciar o processamento
+não do início, mas sim de um determinado ponto. Utilizando o \emph{Wrapper} e o \emph{R}, perdemos esse recurso. A computação
+de rotinas longas se torna mais difícil e pouco recomendada, já que a cada interrupção o processamento é reiniciado. 
+  \item \textbf{Falta de ``compromisso'' fixo dos clientes} - Diferentemente da rede citada no artigo %Artigo do Rodrigo
+não há a figura de um computador \emph{Manager} que gerencia as máquinas, atualizando a qualquer momento, mas sim um servidor 
+que apenas envia e recebe as tarefas e a iniciativa de computação fica com os computadores da grade. 
+
+\end{itemize}
+
+\subsection{Andamento da rede}
+
+
