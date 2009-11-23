@@ -1,4 +1,3 @@
-
 O desenvolvimento do projeto incluiu diversas tecnologias, sendo as principais a linguagem de Programação \emph{R} e o middleware
 para computação voluntária \emph{Boinc}.
 
@@ -34,13 +33,24 @@ pelo cliente para o nome lógico.
 
 O processamento é realizado pelo cliente: o arquivo binário é executado e enquanto ele é executado há um checkpoint
 que permite em caso de interrupções retomar o processamento de um determinado ponto. Finalizado o processamento, 
-na próxima atualização o cliente avisará ao servidor que o processamento foi finalizado. 
+na próxima atualização o cliente avisará ao servidor que o processamento foi finalizado. Um diagrama do funcionamento pode
+ser visto na figura \ref{funcionamento-boinc}. 
+
+
+\begin{figure}[!h]
+  \includegraphics[scale=0.5]{boinc-schema.png}
+  \caption{Funcionamento do Boinc}
+  \label{funcionamento-boinc}
+\end{figure}
+
 
 \subsubsection{Wrapper}
 
+%Fonte: página do Wrapper no site do BOINC
+
 O \emph{Wrapper} é um programa escrito utilizando a \emph{api} do \emph{BOINC}, cujo objetivo é executar aplicações legadas, 
 i.e. aplicações que não utilizam a API do \emph{BOINC}, utilizando o \textit{BOINC}. Há uma versão do Wrapper distribuída junto com o 
-\textit{BOINC} que utiliza um arquivo XML para , mas existe uma outra opção descrita no artigo %Artigo do Húngaro
+\textit{BOINC} que utiliza um arquivo XML, mas existe uma outra opção descrita no artigo %Artigo do Húngaro
 que utiliza um shell para a execução dos aplicativos.
 
 O arquivo XML de execução tem a seguinte estrutura:
@@ -62,7 +72,8 @@ Neste XML, o único campo obrigatório é o \emph{application}, que é a aplica�
 que será executada e pode ser distribuída junto com a aplicação ou já existir no 
 computador que o cliente estará instalado (para este segundo caso é necessário
 informar o caminho inteiro do executável). É possível ter mais de uma tag
-task, e o wrapper as executará sequencialmente.
+task, e o wrapper as executará sequencialmente. É de responsabilidade
+do \textit{Wrapper} 
 
 \subsection{R}
 
@@ -77,8 +88,11 @@ Por padrão, as distribuições estatísticas mais populares podem ser utilizada
 linguagens como C, Java a manipulação de matrizes e tabelas de dados.Outro ponto importante na linguagem $R$ 
 é a extensibilidade: é muito simples instalar bibliotecas. Hoje em dia, há
 cerca de $2000$ bibliotecas no repositório principal (chamado de \emph{CRAN}, 
-\textit{Comprehensible R Archive Network}) com as mais diversas funções 
+sigla de \textit{Comprehensible R Archive Network}) com as mais diversas funções 
 (desde bibliotecas de gráficos específicos até métodos estatísticos mais complexos). 
 Outro repositório bastante utilizado é o Bioconductor, que provê rotinas bastante utilizadas para o processamento
 de dados da área de bioinformática.
+
+
+
 
