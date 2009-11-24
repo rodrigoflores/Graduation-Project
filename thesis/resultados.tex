@@ -5,18 +5,18 @@ nos ambientes \emph{Linux} como no ambiente \emph{Windows} % colocar marca regis
 
 Para o ambiente \emph{Linux}, foi relativamente simples o processo: dado um arquivo com rotinas
 do \emph{R} a serem executadas, é somente necessário alterar a permissão do arquivo para executável 
-(via \verb#chmod +x arquivo.R#) e adicionar a seguinte linha na primeira linha do arquivo:
+(via \verb#chmod +x arquivo.R#) e adicionar a seguinte linha no início do arquivo:
 
 \begin{verbatim}
 #!/usr/bin/Rscript
 \end{verbatim}
 
-Isso faz um sistema \emph{Linux} chamar o interpretador \emph{Rscript} para interpretar as rotinas 
-em \emph{R} e assim executar o arquivo. Esta solução permite não só que rotinas em \emph{R} sejam
+Isso faz um sistema \emph{Linux} chamar o interpretador \emph{Rscript} para interpretar o arquivo  
+e assim fazer a interpretação do arquivo. Esta solução permite não só que rotinas em \emph{R} sejam
 executadas, mas sim qualquer script que tenha seu interpretador descrito na primeira linha.
 
 A esta solução, demos o nome de \emph{Truque do Shebang}, pelos caracteres \verb'#!' serem chamados
-de \emph{shebang}. Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
+popularmente de \emph{shebang}. Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
 Windows no sistema Linux.
 
 \subsection{Sistema Windows} %Marca registrada
@@ -28,7 +28,7 @@ que usando a função \verb#system#, chama o interpretador com o arquivo.R como 
 Esta solução permite inclusive que usemos scripts diferentes de R a cada vez que criamos um 
 \emph{workunit}, assim como adicionar arquivos extra que por ventura fossem necessários para
 o processamento. Esta maneira também funciona no \emph{Linux}, só que o \emph{Runner} precisar
-ser compilado para o \emph{Linux} com o caminho para o interpretador correto. O programa não faz
+ser compilado para o \emph{Linux} com o caminho para o interpretador correto. O programa também não faz
 uma verificação para perceber se o \emph{R} está instalado. 
 
 A utilização do \emph{Runner} foi necessário devido ao \emph{Wrapper} não perceber corretamente
@@ -52,12 +52,12 @@ que o BOINC e o \emph{R} estejam disponível para a plataforma. As plataformas m
   \item \textbf{Código aberto} - A utilização de dois softwares com código aberto facilita bastante: a 
 busca de bugs se torna possível, a gratuidade dos softwares e a grande quantidade de documentação, muitas vezes produzidas por
 pessoas que não necessariamente são da equipe de desenvolvimento do \emph{BOINC}. A mentalidade de ajuda mútua, existente nas
-listas de discussão na no canal de IRC do projeto também é de grande ajuda; 
+listas de discussão e no canal de IRC do projeto também é de grande ajuda; 
   \item \textbf{Execução invisível ao usuário} - Com o \emph{BOINC} configurado para isso, um usuário comum da rede nem ao menos 
 percebe a existência de um processamento em grade. É possível configurar o \emph{BOINC} para só começar a execução com o computador ocioso
-há um número arbitrário de minutos. Também é possível configurar para o processamento só acontecer em determinadas 
+após um número arbitrário de minutos. Também é possível configurar para o processamento só acontecer em determinadas 
 faixas de horários e dias da semana. Outra configuração interessante é a determinação do máximo de memória 
-\emph{RAM} e de espaço em disco para a execução. 
+\emph{RAM} e de espaço em disco para a execução, assim como a frequência com que ele usará a rede. 
   \item \textbf{Solução funciona para qualquer linguagem de script} - De maneira análoga, é possível executar qualquer programa escrito em 
 linguagem interpretada com o BOINC utilizando esta mesma solução. Como comentado antes, só é necessário que exista uma versão do interpretador
 para as plataformas necessárias (o que é comum para as linguagens mais utilizadas como \emph{PERL}, \emph{Python} e 
@@ -85,6 +85,8 @@ que apenas envia e recebe as tarefas e a iniciativa de computação fica com os 
 
 \subsection{Instalação da rede}
 
-A instalação está em andamento na rede do laboratório CEC do IME-USP. No momento possuímos $3$ máquinas Linux com o \emph{Boinc}
-em funcionamento e $2$ máquinas Windows. Por motivos de reinstalação do sistema dos computadores, a instalação está tomando 
-mais tempo que o previsto, mas em breve acredito que teremos a grande funcionando em seu pleno funcionamento.
+A instalação está em andamento na rede do laboratório CEC do IME-USP. No momento possuímos $3$ máquinas Linux e $2$ máquinas Windows com o \emph{Boinc}
+em funcionamento . Por motivos de reinstalação do sistema dos computadores, a instalação está tomando 
+mais tempo que o previsto, mas em breve acredito que teremos a grade em seu pleno funcionamento.
+
+
