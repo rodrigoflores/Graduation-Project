@@ -70,14 +70,16 @@ que será executada e pode ser distribuída junto com a aplicação ou já exist
 computador que o cliente estará instalado (para este segundo caso é necessário
 informar o caminho inteiro do executável). É possível ter mais de uma tag
 task, e o wrapper as executará sequencialmente. É de responsabilidade
-do \textit{Wrapper} 
+do \textit{Wrapper} perceber se a execução do programa foi feita com sucesso, 
+mas não é responsabilidade dele verificar se os pré-requisitos que o programa necessida
+estão presentes no sistema. 
 
 \subsection{R}
 
 A linguagem de programação estatística $R$ é uma implementação da linguagem $S$ e foi criada por John Ihaka e Robert
 Gentleman na Universidade de Auckland, da Nova Zelândia. Hoje, a linguagem $R$ é uma linguagem considerada padrão
-entre estatísticos no desenvolvimento de softwares estatísticos e na análise de dados. Há também um ambiente 
-onde podemos utilizar a linguagem em um interpretador e gerar gráficos de alta qualidade. 
+em análise de dados e geração de gráficos. Há também um ambiente 
+onde podemos utilizar a linguagem em um interpretador. 
 
 Por padrão, as distribuições estatísticas mais populares podem ser utilizadas e é muito mais simples que em 
 linguagens como C, Java a manipulação de matrizes e tabelas de dados.Outro ponto importante na linguagem $R$ 
@@ -87,7 +89,6 @@ sigla de \textit{Comprehensible R Archive Network}) com as mais diversas funçõ
 (desde bibliotecas de gráficos específicos até métodos estatísticos mais complexos). 
 Outro repositório bastante utilizado é o Bioconductor, que provê rotinas bastante utilizadas para o processamento
 de dados da área de bioinformática.
-
 
 
 
