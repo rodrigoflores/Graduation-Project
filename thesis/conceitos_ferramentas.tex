@@ -74,21 +74,57 @@ do \textit{Wrapper} perceber se a execução do programa foi feita com sucesso,
 mas não é responsabilidade dele verificar se os pré-requisitos que o programa necessida
 estão presentes no sistema. 
 
+
 \subsection{R}
 
-A linguagem de programação estatística $R$ é uma implementação da linguagem $S$ e foi criada por John Ihaka e Robert
-Gentleman na Universidade de Auckland, da Nova Zelândia. Hoje, a linguagem $R$ é uma linguagem considerada padrão
-em análise de dados e geração de gráficos. Há também um ambiente 
-onde podemos utilizar a linguagem em um interpretador. 
+A linguagem de programação estatística \emph{R} é uma implementação da linguagem \emph{S} e foi criada por Ross Ihaka e Robert
+Gentleman na Universidade de Auckland, da Nova Zelândia. A linguagem e ambiente para cálculos estatísticos é considerada
+padrão %http://www.nytimes.com/2009/01/07/technology/business-computing/07program.html?_r=1
+na área de análise de dados e além do ambiente acadêmico, empresas como \emph{Google}, \emph{Pfizer} e \emph{Merck} a utilizam em seus
+processos de mineração de dados. 
 
-Por padrão, as distribuições estatísticas mais populares podem ser utilizadas e é muito mais simples que em 
-linguagens como C, Java a manipulação de matrizes e tabelas de dados.Outro ponto importante na linguagem $R$ 
-é a extensibilidade: é muito simples instalar bibliotecas. Hoje em dia, há
-cerca de $2000$ bibliotecas no repositório principal (chamado de \emph{CRAN}, 
-sigla de \textit{Comprehensible R Archive Network}) com as mais diversas funções 
-(desde bibliotecas de gráficos específicos até métodos estatísticos mais complexos). 
-Outro repositório bastante utilizado é o Bioconductor, que provê rotinas bastante utilizadas para o processamento
-de dados da área de bioinformática.
+Dentre as facilidades que seu uso proporciona, podemos citar as seguintes:
 
+\begin{itemize}
+  \item Grande quantidade de funções estatísticas de uso cotidiano na análise de dados
+como cálculo de média, desvio padrão, ajuste de curvas, análise de séries temporais. Há também funções mais complexas como por 
+exemplo implementações de algoritmos de \emph{clustering}. 
+  \item Utilizando o \emph{R} é possível fazer operações em tabelas semelhantes a que normalmente 
+são feitas em bancos de dados relacionais como seleção de linhas em tabelas que atendem
+certas condições. 
+  \item O \emph{R} possui também rotinas de manipulação de matrizes e resolução de sistemas lineares, que são essenciais
+em qualquer tarefa de cálculo numérico. 
+  \item Gráficos de alta qualidade dos mais variados tipos e para os mais variados propósitos com uma qualidade alta 
+também podem ser feitos com o \emph{R}. 
+  \item A facilidade de se criar e de se obter pacotes, que nada mais são que conjuntos de rotinas agrupadas, é outro fator
+importante: é muito simples criar pacotes e documentá-los. Para disponibilizá-los, pode se submeter um pedido de aprovação 
+de para disponibilização no repositório oficial (\url{http://cran-r.c3sl.ufpr.br/})  
+do \emph{R}, que possui $2076$ pacotes para os mais diversos fins. O repositório possui \emph{mirrors} espalhados por
+todo o mundo, inclusive no Brasil.  
+\end{itemize}
 
+Além destes motivos, o artigo \cite{bioconductor} dispõe outros motivos para a utilização do \emph{R} e de seu
+pacote para análise de dados de de bioinformática \emph{Bioconductor}.
 
+\begin{itemize}
+  \item \textbf{Transparência -} Muitas metodologias de análise na área de biologia e bioinformática computacional
+são extremamente complexas e muitas etapas são necessárias na conversão de informação bruta (como por exemplo imagens 
+escaneadas de \emph{microarray}). Não se sabe a priori, como as análises podem ser sensíveis a estes fatores, e portanto
+trabalhos referenciados na área normalmente expõe todo o processo. O uso de mesmo ambiente e das mesmas facilita bastante
+esta transparência;
+  \item \textbf{Reprodutibilidade -} Experimentos na área de biologia molecular devem publicar listas de ingredientes
+e algoritmos para criar substâncias e processos. Um resultado só pode ser verificado se existir uma obediência a 
+um protocolo. Seguindo esta linha, a mineração de dados também deve ser bem descrita e tanto o código fonte 
+como os dados nos quais a análise é baseada são normalmente publicados junto com um trabalho nesta área. Utilizar
+um mesmo ambiente, que pode ser obtido gratuitamente, para as qualquer plataforma, com pacotes 
+facilmente extensíveis também facilita este processo.
+  \item \textbf{Eficiência do desenvolvimento -} Se pacote foi por ventura desenvolvido para alguma necessidade, ele pode ser publicado
+, melhorado, estudado por outros cientistas, e pode ter seu leque de funcionalidades aumentado caso seu uso siga padrões
+de código aberto. Para isso é necessário que esteja bem documentado. Tanto o \emph{R} como o \emph{Bioconductor} são softwares
+de código aberto e disfrutam desta qualidade.
+  \item \textbf{Prototipagem -} Como o \emph{R} é uma linguagem em um nível mais alto que outras linguagens como \emph{C} ou
+\emph{FORTRAN}, programar novas rotinas é bem mais simples. Mesmo não tendo uma execução tão eficiente como em outras
+linguagens, pode ser utilizado como protótipo, para depois ser implementado em uma linguagem mais eficiente caso o 
+resultado seja bom. 
+
+\end{itemize}

@@ -34,7 +34,6 @@ de vida inteligente fora da Terra. Como um produto deste projeto, nasceu o \emph
 
 \subsection{Linguagens Interpretadas}
 
-
 Uma das possíveis divisões para linguagens de programação é se seus códigos são compilados para código de máquina ou se são simplismente 
 interpretados. Enquanto no primeiro caso há a figura de um compilador, que transforma o código fonte em código de máquina 
 para ele poder então ser executado, no segundo caso,
@@ -46,10 +45,28 @@ de serem multiplataforma (basta o interpretador
 estar disponível para aquela plataforma) e permitam escopo e tipagem dinâmica, também costumam ser menos eficientes que linguagens compiladas e 
 a presença de um interpretador é obrigatória para sua execução. 
 
-Dentre as linguagens interpretadas, uma que adquiriu destaque na área de estatística e bioinformática é a linguagem \emph{R}. Esta 
-linguagem já vem com as distribuições estatísticas mais usuais, possui muitos dos algoritmos normalmente utilizados já implementados e
- uma extensibilidade poderosa, com bibliotecas que podem ser baixadas facilmente.
+Dentre as linguagens interpretadas, uma que adquiriu destaque na área de estatística e bioinformática é a linguagem \emph{R}, que 
+será de fundamental importância para este trabalho. 
 
+
+\subsubsection{Linguagem R}
+
+A linguagem \emph{R} é uma linguagem interpretada bastante utilizada no desenvolvimento de rotinas de bioinformática e na análise de
+dados. Muitas funções normalmente utilizadas em análises de dados vêm incluídas na linguagem como por exemplo cálculo da
+ média, desvio padrão, ajuste de curva e etc. A geração de gráficos do \emph{R} também é bastante elaborada e é possível 
+gerar gráficos dos mais diversos tipos. Também há implementações de algoritmos mais elaborados de estatística como por 
+exemplo algoritmos de \emph{clustering} que também são bastante usados em bioinformática.
+
+Outro ponto interessante da linguagem \emph{R} são os pacotes extras que se pode baixar. Ao todo, no repositório oficial
+são $2076$ pacotes, para os mais diversos propósitos que podem ser desde funções mais específicas para análise como 
+por exemplo o \emph{Bayesclust}\footnote{Disponível em \url{http://cran.r-project.org/web/packages/bayesclust/index.html}}, 
+para geração de gráficos utilizando outras bibliotecas como por exemplo o 
+\emph{rgl}\footnote{Disponível em \url{http://cran.r-project.org/web/packages/rggobi/index.html}}. 
+
+Com maior destaque para área de bioinformática, o artigo 
+\cite{bioconductor} fala sobre o \emph{Bioconductor}, um projeto  que propõe o fornecimento 
+de ferramentas para a análise de dados desta área. O projeto foi iniciado em 2001 e na grande maioria, 
+seus pacotes são para o ambiente de programação da linguagem \emph{R}.
 
 \subsection{Linguagens interpretadas e computação distribuída}
 
@@ -72,6 +89,7 @@ operacional é o Linux.
 Seguindo este feito, este trabalho tem a intenção de construir algo semelhante nos laboratórios da rede CEC do IME/USP. Utilizando
 não somente os computadores executando Linux, mas também os computadores cujo sistema operacional é o Microsoft Windows %Colocar marca registrada.
 já que estes constituem uma parte considerável da rede.  
+
 
 
 
