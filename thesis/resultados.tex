@@ -1,7 +1,9 @@
 O principal resultado deste trabalho foi fazer o \emph{Boinc} funcionar com rotinas em \emph{R}, tanto
 nos ambientes \emph{Linux} como no ambiente \emph{Windows} % colocar marca registrada
 
-\subsection{Sistema Linux}
+\subsection{Implementação}
+
+\subsubsection{Sistema Linux}
 
 Para o ambiente \emph{Linux}, foi relativamente simples o processo: dado um arquivo com rotinas
 do \emph{R} a serem executadas, é somente necessário alterar a permissão do arquivo para executável 
@@ -16,10 +18,13 @@ e assim fazer a interpretação do arquivo. Esta solução permite não só que 
 executadas, mas sim qualquer script que tenha seu interpretador descrito na primeira linha.
 
 A esta solução, demos o nome de \emph{Truque do Shebang}, pelos caracteres \verb'#!' serem chamados
-popularmente de \emph{shebang}. Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
-Windows no sistema Linux.
+popularmente de \emph{shebang}. Esta implementação foi relativamente simples: o BOINC possuia um tutorial
+para executarmos programas compilados na grade e só o truque do shebang foi necessário.
 
-\subsection{Sistema Windows} %Marca registrada
+Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
+Windows no sistema Linux. 
+
+\subsubsection{Sistema Windows} %Marca registrada
 
 Como o sistema Windows não permite utilizar scripts utilizando o \emph{shebang}, foi necessário 
 utilizar um programa compilado escrito na linguagem C, que chamamos de \emph{Runner}, 
@@ -34,9 +39,29 @@ uma verificação para perceber se o \emph{R} está instalado.
 A utilização do \emph{Runner} foi necessário devido ao \emph{Wrapper} não perceber corretamente
 que o interpretador foi executado sem erros e mesmo em execuções sem erros, o \emph{wrapper} 
 recebia um valor de retorno do interpretador diferente de zero, o que ele percebia como um erro
-e marcava o \emph{workunit} como inválido.
+e marcava o \emph{workunit} como inválido. Um diagrama exemplificando esse funcionamento pode ser visto 
+na figura \ref{diagrama-boinc-wrapper-windows}.
+
+A implementação no Windows foi bastante difícil: existem muitos pequenos detalhes que acabam
+atrapalhando um pouco. Um dos exemplos foi específicar o caminho do executáve: para o Windows acessar
+um diretório específico devemos ``truncar'' os nomes de diretórios maiores que $8$ caracteres, sendo 
+assim o diretório trocando o oitavo e nono caracter por \verb#~1# e desprezando os seguintes. 
+Alguns outros problemas foram relacionados à falta de mensagens de erro do BOINC mais amigáveis e
+à falta de verificação das entradas: um \verb#XML# mal formatado causou um erro  no processamento
+do workunit, quando isso deveria ser acusado na submissão do workunit.
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.3]{boinc-diagram-runner.png}
+  \caption{Diagrama do funcionamento do \emph{BOINC} com o \emph{Runner} e \emph{Wrapper}}
+  \label{diagrama-boinc-wrapper-windows}
+\end{figure}
+ 
 
 \subsection{Discussão}
+
+
 
 \subsubsection{Vantagens} 
 

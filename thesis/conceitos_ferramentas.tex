@@ -58,19 +58,24 @@ ser visto na figura \ref{funcionamento-boinc}.
 
 
 \begin{figure}[!h]
+  \centering
   \includegraphics[scale=0.5]{boinc-schema.png}
   \caption{Funcionamento do Boinc}
   \label{funcionamento-boinc}
 \end{figure}
 
+\newpage
 
 \subsubsection{Wrapper}
 
 
 O \emph{Wrapper} é um programa escrito utilizando a \emph{api} do \emph{BOINC}, cujo objetivo é executar aplicações legadas, 
 i.e. aplicações que não utilizam a API do \emph{BOINC}, utilizando o \textit{BOINC}. Há uma versão do Wrapper distribuída junto com o 
-\textit{BOINC} que utiliza um arquivo XML, mas existe uma outra opção descrita no artigo \cite{hungaro}
-que utiliza um shell para a execução dos aplicativos.
+\textit{BOINC} que utiliza um arquivo XML, mas existe uma outra opção descrita no artigo \cite{hungaro} que utiliza um shell para a 
+execução dos aplicativos. Os diagramas de funcionamento do 
+\emph{BOINC} com um programa escrito com a api e com o wrapper podem ser vistas nas figuras \ref{boinc-api} e \ref{boinc-wrap} 
+respectivamente.
+
 
 O arquivo XML de execução tem a seguinte estrutura:
 
@@ -95,6 +100,22 @@ task, e o wrapper as executará sequencialmente. É de responsabilidade
 do \textit{Wrapper} perceber se a execução do programa foi feita com sucesso, 
 mas não é responsabilidade dele verificar se os pré-requisitos que o programa necessida
 estão presentes no sistema. 
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.3]{boinc-api.png}
+  \caption{Funcionamento do Boinc utilizando uma aplicação que utiliza sua api}
+  \label{boinc-api}
+\end{figure}
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.3]{boinc-wrap.png}
+  \caption{Funcionamento do Boinc utilizando uma aplicação que utiliza o \emph{wrapper}}
+  \label{boinc-wrap}
+\end{figure}
 
 
 \subsection{R}
