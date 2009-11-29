@@ -172,7 +172,7 @@ resultado seja bom.
 
 \end{itemize}
 
-\subsection{Utilização do \emph{R} e do \emph{BOINC}}
+\subsection{Utilização \emph{BOINC} para o processamento de rotinas na linguagem \emph{R}}
 
 Dentre as possibilidades de processamento em grade para a linguagem \emph{R}, escolhemos o \emph{BOINC} para o processamento em grade.
 Dentre os motivos, podemos citar:
@@ -180,11 +180,20 @@ Dentre os motivos, podemos citar:
 \begin{itemize}
   \item \textbf{Código aberto -} Ambas as tecnologias são de código aberto e possuem licenças que permitem a utilização das duas
 ferramentas para qualquer propósito, além da obtenção gratuita e d possibilidade de estudo do código fonte das duas tecnologias.
-Outro ponto forte em comum entre elas é a presença de uma comunidade ativa, com fóruns, listas de discussão e canais de IRC.
-  \item \textbf{Multiplataforma -}  
+Outro ponto forte em comum entre elas é a presença de uma comunidade ativa, com fóruns, listas de discussão e canais de IRC;
+  \item \textbf{Multiplataforma -}  Em redes de universidades e empresas é muito comum a utilização de sistemas tanto 
+\emph{Linux} como \emph{Windows}. Em ambientes nos quais há muito desenvolvimento de programas, o \emph{Linux} acaba
+sendo bastante utilizado, já para um usuário cotidiano o Windows acaba sendo o sistema utilizado. Ter uma solução
+que utilize tanto computadores com sistemas \emph{Linux} como computadores com sistemas \emph{Windows} é essencial 
+para sua utilização. Como o \emph{R} e o \emph{BOINC} já tem versões para estes dois sistemas, assim como o \emph{wrapper}, 
+fica então possível a utilização multiplataforma da grade. Lembrando que a utilização multiplataforma deve funcionar para um mesmo
+projeto e sem distinção de workunits, de modo a ser indiferente à quem submete a utilização de qual sistema para a computação.
   \item \textbf{Execução inalterada de aplicações escritas em \emph{R} -} Utilizando o \emph{wrapper} é possível executar,
 sem precisar alterar um byte do código, programas compilados. Utilizando como programa compilado o interpretador do 
 \emph{R}, podemos executar rotinas do \emph{R} em utilizando o \emph{wrapper}. Isso poupa o trabalho de reescrever
-códigos já previamente escritos e em funcionamento.
-  \item \textbf{Possibilidade de se utilizar pacotes do \emph{R} -} Como o \emph{R} possui uma extensibilidade.
+códigos já previamente escritos e em funcionamento;
+  \item \textbf{Possibilidade de se utilizar pacotes do \emph{R} -} Como o \emph{R} possui uma notável extensibilidade com mais
+de $2000$ pacotes, é de se esperar que um ambiente para executar rotinas nesta linguagem também seja capaz de automaticamente instalar
+pacotes do \emph{R}, caso isto seja necessário. Utilizando o \emph{BOINC} e o \emph{wrapper} é possível utilizar estes pacotes,
+sendo apenas necessário verificar se eles estão instalados e colocar no programa o comando de instalação caso não estejam.
 \end{itemize}
