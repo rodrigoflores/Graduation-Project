@@ -40,7 +40,10 @@ A utilização do \emph{Runner} foi necessário devido ao \emph{Wrapper} não pe
 que o interpretador foi executado sem erros e mesmo em execuções sem erros, o \emph{wrapper} 
 recebia um valor de retorno do interpretador diferente de zero, o que ele percebia como um erro
 e marcava o \emph{workunit} como inválido. Um diagrama exemplificando esse funcionamento pode ser visto 
-na figura \ref{diagrama-boinc-wrapper-windows}.
+na figura \ref{diagrama-boinc-wrapper-windows}. Para a execução ficar multiplataforma, foi necessário 
+fazer uma pequena alteração no \emph{wrapper} na versão para \emph{Linux} modificando o nome do
+arquivo XML do wrapper, já que em ambos os sistemas é necessária a utilização de um arquivo XML próprio.
+
 
 A implementação no Windows foi bastante difícil: existem muitos pequenos detalhes que acabam
 atrapalhando um pouco. Um dos exemplos foi específicar o caminho do executáve: para o Windows acessar
@@ -48,7 +51,10 @@ um diretório específico devemos ``truncar'' os nomes de diretórios maiores qu
 assim o diretório trocando o oitavo e nono caracter por \verb#~1# e desprezando os seguintes. 
 Alguns outros problemas foram relacionados à falta de mensagens de erro do BOINC mais amigáveis e
 à falta de verificação das entradas: um \verb#XML# mal formatado causou um erro  no processamento
-do workunit, quando isso deveria ser acusado na submissão do workunit.
+do workunit, quando isso deveria ser acusado na submissão do workunit. Outro problema foi um \emph{Bug}
+nas configurações de compilação do \emph{wrapper} no Microsoft Visual Studio Express % Verificar 
+que fazia referência a bibliotecas desnecessárias e inexistentes para a compilação do \emph{wrapper}
+e isso só foi resolvido pelos desenvolvedores do \emph{BOINC} algumas semanas depois. 
 
 
 \begin{figure}[!h]
