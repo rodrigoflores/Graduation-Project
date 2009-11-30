@@ -1,5 +1,5 @@
 O desenvolvimento do projeto incluiu diversas tecnologias, sendo as principais a linguagem de Programação \emph{R} e o middleware
-para computação voluntária \emph{Boinc}. Dentre os conceitos estudados, podemos destacar a computação em grade.  
+para computação voluntária \emph{BOINC}. Dentre os conceitos estudados, podemos destacar a computação em grade.  
 
 \subsection{BOINC}
 
@@ -40,7 +40,7 @@ que também servem de ajuda.
 \subsubsection{Funcionamento do BOINC}
 
 
-Cada unidade de processamento no Boinc é chamada de \emph{workunit} e é constítuida de arquivos executáveis e 
+Cada unidade de processamento no BOINC é chamada de \emph{workunit} e é constítuida de arquivos executáveis e 
 arquivos de entrada. Depois de processado, os arquivos de saída gerados são enviados para o servidor que
 normalmente armazena estes arquivos em um banco de dados ou em um arquivo.
 
@@ -60,7 +60,7 @@ ser visto na figura \ref{funcionamento-boinc}.
 \begin{figure}[!h]
   \centering
   \includegraphics[scale=0.5]{boinc-schema.png}
-  \caption{Funcionamento do Boinc}
+  \caption{Funcionamento do BOINC}
   \label{funcionamento-boinc}
 \end{figure}
 
@@ -69,11 +69,11 @@ ser visto na figura \ref{funcionamento-boinc}.
 \subsubsection{Wrapper}
 
 
-O \emph{Wrapper} é um programa escrito utilizando a \emph{api} do \emph{BOINC}, cujo objetivo é executar aplicações legadas, 
+O \emph{Wrapper} é um programa escrito utilizando a \emph{API} do \emph{BOINC}, cujo objetivo é executar aplicações legadas, 
 i.e. aplicações que não utilizam a API do \emph{BOINC}, utilizando o \textit{BOINC}. Há uma versão do Wrapper distribuída junto com o 
 \textit{BOINC} que utiliza um arquivo XML, mas existe uma outra opção descrita no artigo \cite{hungaro} que utiliza um shell para a 
 execução dos aplicativos. Os diagramas de funcionamento do 
-\emph{BOINC} com um programa escrito com a api e com o wrapper podem ser vistas nas figuras \ref{boinc-api} e \ref{boinc-wrap} 
+\emph{BOINC} com um programa escrito com a API e com o wrapper podem ser vistas nas figuras \ref{boinc-api} e \ref{boinc-wrap} 
 respectivamente.
 
 
@@ -98,14 +98,14 @@ computador que o cliente estará instalado (para este segundo caso é necessári
 informar o caminho inteiro do executável). É possível ter mais de uma tag
 task, e o wrapper as executará sequencialmente. É de responsabilidade
 do \textit{Wrapper} perceber se a execução do programa foi feita com sucesso, 
-mas não é responsabilidade dele verificar se os pré-requisitos que o programa necessida
+mas não é responsabilidade dele verificar se os pré-requisitos que o programa necessita
 estão presentes no sistema. 
 
 
 \begin{figure}[!h]
   \centering
   \includegraphics[scale=0.3]{boinc-api.png}
-  \caption{Funcionamento do Boinc utilizando uma aplicação que utiliza sua api}
+  \caption{Funcionamento do BOINC utilizando uma aplicação que utiliza sua API}
   \label{boinc-api}
 \end{figure}
 
@@ -113,7 +113,7 @@ estão presentes no sistema.
 \begin{figure}[!h]
   \centering
   \includegraphics[scale=0.3]{boinc-wrap.png}
-  \caption{Funcionamento do Boinc utilizando uma aplicação que utiliza o \emph{wrapper}}
+  \caption{Funcionamento do BOINC utilizando uma aplicação que utiliza o \emph{wrapper}}
   \label{boinc-wrap}
 \end{figure}
 
@@ -164,7 +164,7 @@ facilmente extensíveis também facilita este processo.
   \item \textbf{Eficiência do desenvolvimento -} Se pacote foi por ventura desenvolvido para alguma necessidade, ele pode ser publicado
 , melhorado, estudado por outros cientistas, e pode ter seu leque de funcionalidades aumentado caso seu uso siga padrões
 de código aberto. Para isso é necessário que esteja bem documentado. Tanto o \emph{R} como o \emph{Bioconductor} são softwares
-de código aberto e disfrutam desta qualidade.
+de código aberto e desfrutam desta qualidade.
   \item \textbf{Prototipagem -} Como o \emph{R} é uma linguagem em um nível mais alto que outras linguagens como \emph{C} ou
 \emph{FORTRAN}, programar novas rotinas é bem mais simples. Mesmo não tendo uma execução tão eficiente como em outras
 linguagens, pode ser utilizado como protótipo, para depois ser implementado em uma linguagem mais eficiente caso o 

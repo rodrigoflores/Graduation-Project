@@ -18,7 +18,7 @@ e assim fazer a interpretação do arquivo. Esta solução permite não só que 
 executadas, mas sim qualquer script que tenha seu interpretador descrito na primeira linha.
 
 A esta solução, demos o nome de \emph{Truque do Shebang}, pelos caracteres \verb'#!' serem chamados
-popularmente de \emph{shebang}. Esta implementação foi relativamente simples: o BOINC possuia um tutorial
+popularmente de \emph{shebang}. Esta implementação foi relativamente simples: o BOINC possuía um tutorial
 para executarmos programas compilados na grade e só o truque do shebang foi necessário.
 
 Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
@@ -26,7 +26,7 @@ Windows no sistema Linux.
 
 \subsubsection{Sistema Windows} %Marca registrada
 
-Como o sistema Windows não permite utilizar scripts utilizando o \emph{shebang}, foi necessário 
+Como o sistema Windows não permite utilizar script utilizando o \emph{shebang}, foi necessário 
 utilizar um programa compilado escrito na linguagem C, que chamamos de \emph{Runner}, 
 que usando a função \verb#system#, chama o interpretador com o arquivo.R como parâmetro. 
 
@@ -46,9 +46,9 @@ arquivo XML do wrapper, já que em ambos os sistemas é necessária a utilizaç�
 
 
 A implementação no Windows foi bastante difícil: existem muitos pequenos detalhes que acabam
-atrapalhando um pouco. Um dos exemplos foi específicar o caminho do executáve: para o Windows acessar
+atrapalhando um pouco. Um dos exemplos foi especificar o caminho do executável: para o Windows acessar
 um diretório específico devemos ``truncar'' os nomes de diretórios maiores que $8$ caracteres, sendo 
-assim o diretório trocando o oitavo e nono caracter por \verb#~1# e desprezando os seguintes. 
+assim o diretório trocando o oitavo e nono caractere por \verb#~1# e desprezando os seguintes. 
 Alguns outros problemas foram relacionados à falta de mensagens de erro do BOINC mais amigáveis e
 à falta de verificação das entradas: um \verb#XML# mal formatado causou um erro  no processamento
 do workunit, quando isso deveria ser acusado na submissão do workunit. Outro problema foi um \emph{Bug}
