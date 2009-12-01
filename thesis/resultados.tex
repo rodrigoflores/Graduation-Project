@@ -37,7 +37,7 @@ ser compilado para o \emph{Linux} com o caminho para o interpretador correto. O 
 uma verificação para perceber se o \emph{R} está instalado. 
 
 A utilização do \emph{Runner} foi necessário devido ao \emph{Wrapper} não perceber corretamente
-que o interpretador foi executado sem erros e mesmo em execuções sem erros, o \emph{wrapper} 
+que o interpretador foi executado sem erros e, mesmo em execuções sem erros, o \emph{wrapper} 
 recebia um valor de retorno do interpretador diferente de zero, o que ele percebia como um erro
 e marcava o \emph{workunit} como inválido. Um diagrama exemplificando esse funcionamento pode ser visto 
 na figura \ref{diagrama-boinc-wrapper-windows}. Para a execução ficar multiplataforma, foi necessário 
@@ -48,7 +48,8 @@ arquivo XML do wrapper, já que em ambos os sistemas é necessária a utilizaç�
 A implementação no Windows foi bastante difícil: existem muitos pequenos detalhes que acabam
 atrapalhando um pouco. Um dos exemplos foi especificar o caminho do executável: para o Windows acessar
 um diretório específico devemos ``truncar'' os nomes de diretórios maiores que $8$ caracteres, sendo 
-assim o diretório trocando o oitavo e nono caractere por \verb#~1# e desprezando os seguintes. 
+assim apontamos o caminho, trocando o oitavo e nono caractere do diretório por \verb#~1# 
+e desprezando os seguintes. 
 Alguns outros problemas foram relacionados à falta de mensagens de erro do BOINC mais amigáveis e
 à falta de verificação das entradas: um \verb#XML# mal formatado causou um erro  no processamento
 do workunit, quando isso deveria ser acusado na submissão do workunit. Outro problema foi um \emph{Bug}
@@ -118,6 +119,22 @@ que apenas envia e recebe as tarefas e a iniciativa de computação fica com os 
 
 A instalação está em andamento na rede do laboratório CEC do IME-USP. No momento possuímos $3$ máquinas Linux e $2$ máquinas Windows com o \emph{Boinc}
 em funcionamento . Por motivos de reinstalação do sistema dos computadores, a instalação está tomando 
-mais tempo que o previsto, mas em breve acredito que teremos a grade em seu pleno funcionamento.
+mais tempo que o previsto, mas em breve acredito que teremos a grade em seu pleno funcionamento. 
+
+\subsection{Testes}
+
+Para testar o funcionamento da rede, foram criados $50$ workunits para serem processadas na grade em seu estado atual. 
+Cada \emph{workunit} é processado duas vezes. O tempo médio de retorno do resultado é de $2830.74s$, com um desvio
+padrão de $4923.405s$. A figura \ref{histograma}
+é um historgrama dos tempos para cada \emph{workunit}. O tempo de processamento sem o \emph{BOINC} 
+de cada \emph{workunit} é de aproximadamente $2 min$.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.6]{histograma.pdf}
+  \caption{Histograma dos tempos de retorno do \emph{workunit}}
+  \label{histograma}
+\end{figure}
+
 
 
