@@ -117,24 +117,25 @@ que apenas envia e recebe as tarefas e a iniciativa de computação fica com os 
 
 \subsection{Instalação da rede}
 
-A instalação está em andamento na rede do laboratório CEC do IME-USP. No momento possuímos $3$ máquinas Linux e $2$ máquinas Windows com o \emph{Boinc}
-em funcionamento . Por motivos de reinstalação do sistema dos computadores, a instalação está tomando 
-mais tempo que o previsto, mas em breve acredito que teremos a grade em seu pleno funcionamento. 
+A instalação foi concluída no laboratório CEC do IME-USP. No momento possuímos $48$ máquinas com o sistema 
+Linux funcionando plenamente e 2 máquinas com algum problema na instalação dos pacotes 
+necessários para a computação que foram descartadas dos testes. 
+
+No momento está sendo feito a instalação no sistema Windows que contará com $16$ máquinas que possuem um dual-boot
+com máquinas com o sistema Linux já presentes na grade. 
+
 
 \subsection{Testes}
 
-Para testar o funcionamento da rede, foram criados $50$ workunits para serem processadas na grade em seu estado atual. 
-Cada \emph{workunit} é processado duas vezes. O tempo médio de retorno do resultado é de $2830.74s$, com um desvio
-padrão de $4923.405s$. A figura \ref{histograma}
-é um historgrama dos tempos para cada \emph{workunit}. O tempo de processamento sem o \emph{BOINC} 
-de cada \emph{workunit} é de aproximadamente $2 min$.
+Para testar a grade foi criado um script na linguagem \emph{R} que apenas fazia contas sem significado 
+por, aproximadamente, $100 s$. Foram criados $100$ \textit{workunits} para serem distribuídas entre as máquinas e processadas. Como
+configurado no servidor, foi utilizada uma redundância que enviava, para cada \textit{workunit}, duas tarefas a serem processadas.
 
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.6]{histograma.pdf}
-  \caption{Histograma dos tempos de retorno do \emph{workunit}}
-  \label{histograma}
-\end{figure}
+
+
+
+
+
 
 
 
