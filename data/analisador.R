@@ -11,10 +11,12 @@ z = table[[4]]
 y = table[[5]]
 k = table[[3]]
 m = table[[2]]
+a = 0
 for(i in 1:300)
 {
   if(y[i] == 26)
   {
+    a = a +1
     l = c(l,TRUE)
   }
   else
@@ -22,6 +24,7 @@ for(i in 1:300)
     l = c(l,FALSE)
   }
 }
+a
 
 mean(z[l])
 sd(z[l])
