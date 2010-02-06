@@ -4,6 +4,10 @@ mean(table[[4]])
 sd(table[[4]])
 min(table[[2]]) - max(table[[3]])
 
+png(file="hist_geral.png")
+hist(table[[4]], xlab="Tempo de execução (s)", ylab = "Frequência", main="Histograma para o tempo de execução das tarefas")
+dev.off()
+
 (300*mean(table[[4]]))
 
 l = c()
@@ -30,10 +34,14 @@ mean(z[l])
 sd(z[l])
 300.00*mean(z[l])
 min(m[l]) - max(k[l])
-
+png(file="hist1.png")
+hist(z[l], ,xlab="Tempo de execução (s)", main="Histograma dos tempos de execução das tarefas na máquina 1", ylab="Frequência")
+dev.off()
 
 mean(z[!l])
 sd(z[!l])
 300*mean(z[!l])
 min(m[!l]) - max(k[!l])
-
+png(file="hist2.png")
+hist(z[!l], ,xlab="Tempo de execução (s)", main="Histograma dos tempos de execução das tarefas na máquina 2", ylab="Frequência")
+dev.off()
