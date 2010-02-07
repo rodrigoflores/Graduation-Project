@@ -5,7 +5,7 @@ nos ambientes \emph{Linux} como no ambiente \emph{Windows} % colocar marca regis
 
 \subsubsection{Sistema Linux}
 
-Para o ambiente \emph{Linux}, foi relativamente simples o processo: dado um arquivo com rotinas
+Para o ambiente \emph{Linux}, o processo foi relativamente simples: dado um arquivo com rotinas
 do \emph{R} a serem executadas, é somente necessário alterar a permissão do arquivo para executável 
 (via \verb#chmod +x arquivo.R#) e adicionar a seguinte linha no início do arquivo:
 
@@ -21,7 +21,7 @@ A esta solução, demos o nome de \emph{Truque do Shebang}, pelos caracteres \ve
 popularmente de \emph{shebang}. Esta implementação foi relativamente simples: o BOINC possuía um tutorial
 para executarmos programas compilados na grade e só o truque do shebang foi necessário.
 
-Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para
+Porém, para termos a mesma solução em ambos os sistemas, utilizamos a solução para 
 Windows no sistema Linux. 
 
 \subsubsection{Sistema Windows} %Marca registrada
@@ -32,11 +32,12 @@ que usando a função \verb#system#, chama o interpretador com o arquivo.R como 
 
 Esta solução permite inclusive que usemos scripts diferentes de R a cada vez que criamos um 
 \emph{workunit}, assim como adicionar arquivos extra que por ventura fossem necessários para
-o processamento. Esta maneira também funciona no \emph{Linux}, só que o \emph{Runner} precisar
+o processamento. Esta maneira também funciona no \emph{Linux}, só que o \emph{Runner} precisa
 ser compilado para o \emph{Linux} com o caminho para o interpretador correto. O programa também não faz
-uma verificação para perceber se o \emph{R} está instalado. 
+uma verificação para perceber se o \emph{R} está instalado, dando um resultado de conclusão positiva
+no banco, mas sem arquivos de saída. 
 
-A utilização do \emph{Runner} foi necessário devido ao \emph{Wrapper} não perceber corretamente
+A utilização do \emph{Runner} foi necessária devido ao \emph{Wrapper} não perceber corretamente
 que o interpretador foi executado sem erros e, mesmo em execuções sem erros, o \emph{wrapper} 
 recebia um valor de retorno do interpretador diferente de zero, o que ele percebia como um erro
 e marcava o \emph{workunit} como inválido. Um diagrama exemplificando esse funcionamento pode ser visto 
@@ -119,30 +120,56 @@ que apenas envia e recebe as tarefas e a iniciativa de computação fica com os 
 
 A instalação para o sistema Linux foi concluída no laboratório CEC do IME-USP. No momento possuímos $69$ máquinas com o sistema 
 Linux funcionando plenamente e 2 máquinas com algum problema na instalação dos pacotes 
-necessários para a computação que foram descartadas dos testes. 
+necessários para a computação.  
 
 No momento está sendo feito a instalação no sistema Windows que contará com $16$ máquinas que possuem um dual-boot
-com máquinas com o sistema Linux já presentes na grade. Esta instalação se mostrou um pouco mais complexa, devido a configurações que devem ser feitas no momento da instalação. 
+com máquinas com o sistema Linux já presentes na grade. Esta instalação se mostrou um pouco mais complexa, devido a 
+configurações que devem ser feitas no momento da instalação (e cuja necessidade é pouco clara na documentação). 
 
 
 \subsection{Testes}
 
 Para testar a grade foi criado um script na linguagem \emph{R} que apenas fazia contas sem significado 
-por, aproximadamente, $4min20s$ ``dedicados'' (isto é, executados diretamente em um dos computadores da grade). Foram criados $150$ \textit{workunits} para serem distribuídos entre as máquinas  processadas. Como
-configurado no servidor, foi utilizada uma redundância que enviava, para cada \textit{workunit}, duas tarefas a serem processadas.
+por, aproximadamente, $4min20s$ ``dedicados'' (isto é, executados diretamente em um dos computadores da grade). Foram criados 
+$150$ \textit{workunits} para serem distribuídos entre as máquinas  processadas. Como
+configurado no servidor, foi utilizada uma redundância que enviava, 
+para cada \textit{workunit}, duas tarefas a serem processadas.
 
 Devido a utilização do CEC no mês de janeiro e início de feveiro para cursos de verão (no qual um deles utilizou o sistema em uma das salas Windows), somente duas máquinas fizeram o processamento das $300$ tarefas. O tempo médio 
 de processamento das tarefas foi de $9min2.167s$, com um desvio padrão de $14.486s$. Um histograma desta execução pode 
-ser encontrado na figura \ref{histograma}. Um dos computadores teve um desempenho pouco superior ao outro tendo uma
-média de $8min50.130s$ (e um desvio padrão de $6.543s$) contra uma média de $9min16.404s$ (com um desvio padrão de $5.544s$) do outro computador. O computador que foi mais rápido processou $154$ tarefas, contra $146$ do outro. Todas
+ser encontrado na figura \ref{hist_tarefas}. Um dos computadores (que chamarei de $1$) teve um desempenho pouco superior ao outro tendo uma
+média de $8min50.130s$ (e um desvio padrão de $6.543s$) contra uma média de $9min16.404s$ (com um desvio padrão de $5.544s$) do outro computador (chamado de $2$). Os histogramas do tempo de execução nos computadores podem ser encontrados na figura \ref{hist_comp1} e \ref{hist_comp2} para os computadores $1$ e $2$, respectivamente. O computador $1$ processou $154$ tarefas, contra $146$ do computador $2$. Todas 
 execuções foram feitas com sucesso e todos os resultados gerados estão presentes no diretório de upload dos resultados. 
+
+\begin{figure}[!ht]
+	\includegraphics[scale=0.8]{hist_geral.pdf}
+
+	\caption{Histograma dos tempos de execução das tarefas}
+	\label{hist_tarefas}
+\end{figure}
+
+
+\begin{figure}[!ht]
+	\includegraphics[scale=0.8]{hist1.pdf}
+
+	\caption{Histograma dos tempos de execução das tarefas no computador $1$}
+	\label{hist_comp1}
+\end{figure}
+
+
+\begin{figure}[!ht]
+	\includegraphics[scale=0.8]{hist2.pdf}
+
+	\caption{Histograma dos tempos de execução das tarefas no computador $2$}
+	\label{hist_comp2}	
+\end{figure}
+
+
 
 O tempo total de processamento das tarefas foi de $14h31min41s$. Caso as tarefas fossem processadas
 em série, cada execução durasse o tempo de execução direta, em um computador e de maneira direta 
 (sem o \emph{BOINC}) o tempo de execução seria de, aproximadamente, $21h40min$ o que nos dá um \emph{speed-up} 
 próximo de $1.5$.
-
-
 
 
 

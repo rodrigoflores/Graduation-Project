@@ -10,11 +10,11 @@ Inicialmente, o projeto consistia em gerenciar o projeto \textit{SETI@HOME} que 
 
 \begin{itemize}
 	\item Provar a viabilidade e a praticidade do conceito ``computação em grade distribuída'';
-	\item Fazer um trabalho científico útil fazendo uma análise observacional para detectar vida inteligente fora da Terra.
+	\item Fazer um trabalho científico útil: uma análise observacional para detectar vida inteligente fora da Terra.
 \end{itemize}
 
 O primeiro objetivo foi concluído com sucesso e o resultado é o \textit{BOINC}. O segundo falhou: nenhuma evidência de 
-vida inteligente fora da Terra foi encontrada. 
+vida inteligente fora da Terra foi encontrada até hoje. 
 
 Dentre os diversos motivos para a utilização do \emph{BOINC}, baseados no artigo \cite{boinc}, podemos destacar:
 
@@ -22,7 +22,7 @@ Dentre os diversos motivos para a utilização do \emph{BOINC}, baseados no arti
   \item \textbf{Mais utilizado -} Quando comparado com outros \emph{middlewares} semelhantes como o \textit{middleware} 
 \emph{Condor} ou o \emph{Xtremweb}, o \emph{BOINC} é mais utilizado e há pacotes para o \emph{BOINC} nas 
 distribuições \emph{Linux} mais populares;
-  \item \textbf{Amplamente utilizado -} O \emph{BOINC} é utilizado em diversas áreas como previsão do tempo, física
+  \item \textbf{Amplamente utilizado -} O \emph{BOINC} é utilizado em diversas áreas como previsão do tempo, física,
 astrofísica, biologia, entre outras;
   \item \textbf{Suporte da comunidade -} Baseado no espírito de ajuda mútua existente em comunidades de software livre, é 
 possível ter dúvidas esclarecidas quanto ao funcionamento do \emph{BOINC} de maneira fácil e desburocratizada. Por ser um projeto
@@ -42,7 +42,7 @@ que também servem de ajuda.
 
 Cada unidade de processamento no BOINC é chamada de \emph{workunit} e é constítuida de arquivos executáveis e 
 arquivos de entrada. Depois de processado, os arquivos de saída gerados são enviados para o servidor que
-normalmente armazena estes arquivos em um banco de dados ou em um arquivo.
+normalmente armazena estas saídas em um banco de dados ou em um arquivo.
 
 Para gerar um workunit são necessários dois arquivos XML, um deles detalhando a entrada e o 
 outro detalhando a saída. Para facilitar a escrita do programa, precisamos escrever para cada arquivo um nome lógico 
@@ -99,7 +99,8 @@ informar o caminho inteiro do executável). É possível ter mais de uma tag
 task, e o wrapper as executará sequencialmente. É de responsabilidade
 do \textit{Wrapper} perceber se a execução do programa foi feita com sucesso, 
 mas não é responsabilidade dele verificar se os pré-requisitos que o programa necessita
-estão presentes no sistema. 
+estão presentes no sistema (se isso por ventura acontecer, o arquivo de saída não aparecerá 
+no servidor, porém a execução será dada como correta no banco de dados). 
 
 
 \begin{figure}[!h]
@@ -153,13 +154,13 @@ pacote para análise de dados de de bioinformática \emph{Bioconductor}.
   \item \textbf{Transparência -} Muitas metodologias de análise na área de biologia e bioinformática computacional
 são extremamente complexas e muitas etapas são necessárias na conversão de informação bruta (como por exemplo imagens 
 escaneadas de \emph{microarray}). Não se sabe a priori, como as análises podem ser sensíveis a estes fatores, e portanto
-trabalhos referenciados na área normalmente expõe todo o processo. O uso de mesmo ambiente e das mesmas facilita bastante
-esta transparência;
+trabalhos referenciados na área normalmente expõe todo o processo. O uso de mesmo ambiente e das mesmas ferramentas 
+facilita bastante esta transparência;
   \item \textbf{Reprodutibilidade -} Experimentos na área de biologia molecular devem publicar listas de ingredientes
 e algoritmos para criar substâncias e processos. Um resultado só pode ser verificado se existir uma obediência a 
 um protocolo. Seguindo esta linha, a mineração de dados também deve ser bem descrita e tanto o código fonte 
 como os dados nos quais a análise é baseada são normalmente publicados junto com um trabalho nesta área. Utilizar
-um mesmo ambiente, que pode ser obtido gratuitamente, para as qualquer plataforma, com pacotes 
+um mesmo ambiente, que pode ser obtido gratuitamente, para qualquer plataforma, com pacotes 
 facilmente extensíveis também facilita este processo.
   \item \textbf{Eficiência do desenvolvimento -} Se o pacote foi por ventura desenvolvido para alguma necessidade, ele pode ser publicado
 , melhorado, estudado por outros cientistas, e pode ter seu leque de funcionalidades aumentado caso seu uso siga padrões
@@ -167,19 +168,18 @@ de código aberto. Para isso é necessário que esteja bem documentado. Tanto o 
 de código aberto e desfrutam desta qualidade.
   \item \textbf{Prototipagem -} Como o \emph{R} é uma linguagem em um nível mais alto que outras linguagens como \emph{C} ou
 \emph{FORTRAN}, programar novas rotinas é bem mais simples. Mesmo não tendo uma execução tão eficiente como em outras
-linguagens, pode ser utilizado como protótipo, para depois ser implementado em uma linguagem mais eficiente caso o 
-resultado seja bom. 
+linguagens, pode ser utilizado como protótipo, para depois ser implementado em uma linguagem mais eficiente. 
 
 \end{itemize}
 
-\subsection{Utilização \emph{BOINC} para o processamento de rotinas na linguagem \emph{R}}
+\subsection{Utilização do \emph{BOINC} para o processamento de rotinas na linguagem \emph{R}}
 
 Dentre as possibilidades de processamento em grade para a linguagem \emph{R}, escolhemos o \emph{BOINC} para o processamento em grade.
 Dentre os motivos, podemos citar:
 
 \begin{itemize}
   \item \textbf{Código aberto -} Ambas as tecnologias são de código aberto e possuem licenças que permitem a utilização das duas
-ferramentas para qualquer propósito, além da obtenção gratuita e d possibilidade de estudo do código fonte das duas tecnologias.
+ferramentas para qualquer propósito, além da obtenção gratuita e da possibilidade de estudo do código fonte das duas tecnologias.
 Outro ponto forte em comum entre elas é a presença de uma comunidade ativa, com fóruns, listas de discussão e canais de IRC;
   \item \textbf{Multiplataforma -}  Em redes de universidades e empresas é muito comum a utilização de sistemas tanto 
 \emph{Linux} como \emph{Windows}. Em ambientes nos quais há muito desenvolvimento de programas, o \emph{Linux} acaba
@@ -190,7 +190,7 @@ fica então possível a utilização multiplataforma da grade. Lembrando que a u
 projeto e sem distinção de workunits, de modo a ser indiferente à quem submete a utilização de qual sistema para a computação.
   \item \textbf{Execução inalterada de aplicações escritas em \emph{R} -} Utilizando o \emph{wrapper} é possível executar,
 sem precisar alterar um byte do código, programas compilados. Utilizando como programa compilado o interpretador do 
-\emph{R}, podemos executar rotinas do \emph{R} em utilizando o \emph{wrapper}. Isso poupa o trabalho de reescrever
+\emph{R}, podemos executar rotinas do \emph{R} utilizando o \emph{wrapper}. Isso poupa o trabalho de reescrever
 códigos já previamente escritos e em funcionamento;
   \item \textbf{Possibilidade de se utilizar pacotes do \emph{R} -} Como o \emph{R} possui uma notável extensibilidade com mais
 de $2000$ pacotes, é de se esperar que um ambiente para executar rotinas nesta linguagem também seja capaz de automaticamente instalar

@@ -12,7 +12,7 @@ específicas para isso, produzidas com um alto custo e com um hardware específi
 pode ser utilizado o processamento em grade: utilizando computadores pessoais que são produzidos em massa a um preço mais baixo e 
 trabalhando em paralelo para fazer o processamento. 
 
-O projeto \emph{Beowulf} é um dos exemplos de computação em grade: computadores pessoais baratos constituem uma grade dedicada 
+O projeto \emph{Beowulf} é um dos exemplos de computação em grade mais famosos: computadores pessoais baratos constituem uma grade dedicada 
 que funciona como um super computador. De acordo com o projeto Beowulf, uma rede deste tipo provê o mesmo recurso computacional 
 que um super computador mas custando de um décimo a um terço do preço. Outro exemplo de computação em grade são os 
 projetos de computação oportunista ou voluntária, 
@@ -21,13 +21,13 @@ não necessariamente usam computadores de forma dedicada mas utilizam o tempo oc
 \subsection{Computação oportunista}
 
 A computação oportunista é um tipo de computação distribuída no qual pessoas que possuem computadores podem doar processamento e
-armazenamento ocioso de suas máquinas. Estes projetos normalmente têm um objetivo bem definido com um apelo humanitário.
+armazenamento ocioso de suas máquinas. Estes projetos normalmente têm um objetivo bem definido com um apelo humanitário (ou científico).
 
 O primeiro projeto de Computação voluntária foi o \textit{Great Internet Mersenne Prime Search}, lançado em janeiro de 1996. 
-Seu objetivo era encontrar números primos de Mersenne\footnote{Isto é, números primos na forma $M_n = 2^n - 1$}. Em seguida houveram 
-muitos outros projetos. Entre os projetos mais destacados podemos citar 
-o Folding At Home, que investiga o enrolamento de proteínas e que pode ajudar o desenvolvimentos de pesquisas contra 
-Câncer, doença de Huntington, entre outras. Outro dos projeto notável de computação voluntária, e de grande importância 
+Seu objetivo era encontrar números primos de Mersenne\footnote{Isto é, números primos na forma $M_n = 2^n - 1$}. Após este projeto, nasceram vários outros 
+. Entre os projetos mais destacados podemos citar 
+o \textit{Folding At Home}, que investiga o enrolamento de proteínas e que pode ajudar o desenvolvimentos de pesquisas contra 
+Câncer, doença de Huntington, entre outras. Outro projeto notável de computação voluntária, e de grande importância 
 para este trabalho, é o \textit{SETI@Home} que atraiu centenas de milhares de voluntários 
 de vida inteligente fora da Terra. Como um produto deste projeto, nasceu o \emph{middleware} 
 \emph{BOINC} que hoje é utilizado em diversos projetos. 
@@ -38,7 +38,7 @@ Uma das possíveis divisões para linguagens de programação é se seus código
 interpretados. Enquanto no primeiro caso há a figura de um compilador, que transforma o código fonte em código de máquina 
 para ele poder então ser executado, no segundo caso,
 há a figura de um interpretador que não converte o programa para 
-código de máquina, mas sim o interpreta e o executa. 
+código de máquina, mas sim o interpreta diretamente. 
 
 Linguagens interpretadas possuem vantagens e desvantagens sobre as compiladas: embora elas sejam mais fáceis 
 de serem multiplataforma (basta o interpretador
@@ -53,33 +53,32 @@ será de fundamental importância para este trabalho.
 
 A linguagem \emph{R} é uma linguagem interpretada bastante utilizada no desenvolvimento de rotinas de bioinformática e na análise de
 dados. Muitas funções normalmente utilizadas em análises de dados vêm incluídas na linguagem como por exemplo cálculo da
- média, desvio padrão, ajuste de curva e etc. A geração de gráficos do \emph{R} também é bastante elaborada e é possível 
+ média, desvio padrão, ajuste de curva, entre outras. A geração de gráficos do \emph{R} também é bastante elaborada e é possível 
 gerar gráficos dos mais diversos tipos. Também há implementações de algoritmos mais elaborados de estatística como por 
 exemplo algoritmos de \emph{clustering} que também são bastante usados em bioinformática.
 
-Outro ponto interessante da linguagem \emph{R} são os pacotes extras que se pode baixar. Ao todo, no repositório oficial
+Outro ponto interessante da linguagem \emph{R} são os pacotes extras que se pode baixar. Ao todo, no repositório oficial,
 são $2076$ pacotes, para os mais diversos propósitos que podem ser desde funções mais específicas para análise como 
 por exemplo o \emph{Bayesclust}\footnote{Disponível em \url{http://cran.r-project.org/web/packages/bayesclust/index.html}}, 
-para geração de gráficos utilizando outras bibliotecas como por exemplo o 
-\emph{rgl}\footnote{Disponível em \url{http://cran.r-project.org/web/packages/rggobi/index.html}}. 
+como bibliotecas para geração de gráficos específicos ou utilizando alguma biblioteca externa. como por exemplo o 
+\emph{rggobi}\footnote{Disponível em \url{http://cran.r-project.org/web/packages/rggobi/index.html}}. 
 
 Com maior destaque para área de bioinformática, o artigo 
 \cite{bioconductor} fala sobre o \emph{Bioconductor}, um projeto  que propõe o fornecimento 
-de ferramentas para a análise de dados desta área. O projeto foi iniciado em 2001 e na grande maioria, 
+de ferramentas para a análise de dados desta área. O projeto foi iniciado em 2001 e a grande maioria de 
 seus pacotes são para o ambiente de programação da linguagem \emph{R}.
 
 \subsection{Linguagens interpretadas e computação distribuída}
 
-Embora já existam ótimas soluções para a execução distribuída de programas compilados como o
+Embora já existam ótimas soluções para a execução distribuída de programas compilados, como por exemplo o
  MPI\footnote{disponível em \url{http://www.mcs.anl.gov/research/projects/mpi/}}, não se fala muito em soluções 
 para execução distribuída de programas em linguagem interpretada. 
-Para a linguagem \emph{R} há um pacote chamado \emph{gridR} que permite o uso do R com o \emph{Condor}, %Colocar note
-um middleware para execução de programas em grades.  
+Para a linguagem \emph{R} há um pacote chamado \emph{gridR} que permite o uso do R com o middleware \emph{Condor}, %Colocar note
+que é uma solução bastante conhecida para execução de programas em grades.  
 Um outro trabalho que relaciona o R com computação distribuída é o \cite{Dias} que 
-utiliza o \emph{Alchemi}, um \textit{middleware} para processamento em grade e baseado na 
-tecnologia \textit{.NET}, e a interface \textit{COM} junto com o pacote do \emph{R}
+utiliza o middleware \emph{Alchemi}, cuja finalidade é fazer processamento em grade e é baseado na 
+tecnologia \textit{.NET} da Microsoft,  e a interface \textit{COM} junto com o pacote do \emph{R}
 \emph{RCom}.  
-
 
 O artigo \cite{boinc} fala sobre a utilização do Middleware de computação voluntária \emph{BOINC} como solução para computação 
 em grade na Universidade de Extremadura na Espanha e dentre os programas executados na grade, haviam
