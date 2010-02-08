@@ -120,7 +120,8 @@ que apenas envia e recebe as tarefas e a iniciativa de computação fica com os 
 
 A instalação para o sistema Linux foi concluída no laboratório CEC do IME-USP. No momento possuímos $69$ máquinas com o sistema 
 Linux funcionando plenamente e 2 máquinas com algum problema na instalação dos pacotes 
-necessários para a computação.  
+necessários para a computação.  Primeiramente, o \textit{BOINC} foi instalado em $48$ computadores (e foi neste ambiente que os testes foram executados )
+e algumas semanas depois, ele foi instalado em mais $21$ computadores. 
 
 No momento está sendo feito a instalação no sistema Windows que contará com $16$ máquinas que possuem um dual-boot
 com máquinas com o sistema Linux já presentes na grade. Esta instalação se mostrou um pouco mais complexa, de\-vi\-do a 
@@ -145,13 +146,17 @@ reduzimos o acúmulo de tarefas com o servidor para zero.
 
 \subsection{Testes}
 
+
+
 Para testar a grade foi criado um script na linguagem \emph{R} que apenas fazia contas sem significado 
 por, aproximadamente, $4min20s$ ``dedicados'' (isto é, executados diretamente em um dos computadores da grade). Foram criados 
 $150$ \textit{workunits} para serem distribuídos entre as máquinas  processadas. Como
 configurado no servidor, foi utilizada uma redundância que enviava, 
 para cada \textit{workunit}, duas tarefas a serem processadas.
 
-Devido a utilização do CEC no mês de janeiro e início de feveiro para cursos de verão (no qual um deles utilizou o sistema em uma das salas Windows), somente duas máquinas fizeram o processamento das $300$ tarefas. O tempo médio 
+Foram feitos dois testes: um para certificar que as instalações nas máquinas foram bem sucedidas, e outro para calcular a média de tempo de execução sem interrupções. No primeiro teste, foram enviadas $1000$ tarefas, as quais utilizaram as $48$ máquinas que tinham o \textit{BOINC} instalado na época. Algumas execuções em algumas máquinas foram bastante demoradas (chegando a alguns milhares de segundos), provavelmente devido a algum usuário que interrompeu o processo, ou a alguma falha na configuração. 
+
+No segundo teste, o que se buscou foi o tempo médio de retorno. Devido a utilização do CEC no final do mês de janeiro e no início de feveiro para cursos de verão (no qual um deles utilizou o sistema Windows em uma das salas), duas máquinas fizeram o processamento das $300$ tarefas. O tempo médio 
 de processamento das tarefas foi de $9min2.167s$, com um desvio padrão de $14.486s$. Um histograma desta execução pode 
 ser encontrado na figura \ref{hist_tarefas}. Um dos computadores (que chamarei de $1$) teve um desempenho pouco superior ao outro tendo uma
 média de $8min50.130s$ (e um desvio padrão de $6.543s$) contra uma média de $9min16.404s$ (com um desvio padrão de $5.544s$) do outro computador (chamado de $2$). Os histogramas do tempo de execução nos computadores podem ser encontrados na figura \ref{hist_comp1} e \ref{hist_comp2} para os computadores $1$ e $2$, respectivamente. O computador $1$ processou $154$ tarefas, contra $146$ do computador $2$. Todas 
