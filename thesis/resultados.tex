@@ -103,7 +103,7 @@ para as plataformas necessárias (o que é comum para as linguagens mais utiliza
 As principais desvantagens são:
 
 \begin{itemize}
-  \item \textbf{Necessidade de se ter o \emph{R} instalado} - O \emph{R} não é uma linguagem instalada por padrão
+  \item \textbf{Necessidade de se ter o \emph{R} instalado} - O \emph{R} não é uma linguagem ins\-ta\-la\-da por padrão
 nas distribuições Linux mais populares, nem no \emph{Windows}. Então, a adição de um nó só pode ser feita se o \emph{R}
 for também instalado. 
   \item \textbf{Falta de checkpoints} - Utilizando um aplicativo feito com a \emph{API} do \emph{BOINC} é possível se ter
@@ -123,8 +123,24 @@ Linux funcionando plenamente e 2 máquinas com algum problema na instalação do
 necessários para a computação.  
 
 No momento está sendo feito a instalação no sistema Windows que contará com $16$ máquinas que possuem um dual-boot
-com máquinas com o sistema Linux já presentes na grade. Esta instalação se mostrou um pouco mais complexa, devido a 
-configurações que devem ser feitas no momento da instalação (e cuja necessidade é pouco clara na documentação). 
+com máquinas com o sistema Linux já presentes na grade. Esta instalação se mostrou um pouco mais complexa, de\-vi\-do a 
+configurações que devem ser feitas no momento da instalação (e cuja necessidade é pouco clara na documentação).
+
+Somente três alterações foram feitas na configuração dos clientes: 
+
+
+\begin{itemize}
+   \item Execução das tarefas apenas quando o computador estiver ocioso por $10min$. Por padrão, o \textit{Boinc} é 
+executado sempre, inclusive quando um usuário esteja usando. Como nossa intenção é executar no tempo ocioso da rede, 
+escolhemos essa configuração. 
+   \item Conexão com o servidor sempre que possível. Como normalmente a distância de um cliente para um servidor é longa,
+a conexão com o servidor é feito apenas após um período determinado de tempo (por padrão $0.10 dia$). Reduzimos 
+esse valor para zero, tornando a transmissão de resultados sempre que possível devido ao baixo volume de dados transmitidos. 
+   \item \emph{Buffer} de tarefas adicionais ajustada para zero. Por padrão, o cliente do \textit{Boinc} assume o processamento de várias
+tarefas de uma vez, e devolvendo o resultado de todas estas ao mesmo tempo. Porém para distribuir melhor as
+tarefas nos nós e devido a comunicação com o servidor ser frequente (como especificado no item anterior)
+reduzimos o acúmulo de tarefas com o servidor para zero.
+\end{itemize} 
 
 
 \subsection{Testes}
@@ -167,8 +183,8 @@ execuções foram feitas com sucesso e todos os resultados gerados estão presen
 
 
 O tempo total de processamento das tarefas foi de $14h31min41s$. Caso as tarefas fossem processadas
-em série, cada execução durasse o tempo de execução direta, em um computador e de maneira direta 
-(sem o \emph{BOINC}) o tempo de execução seria de, aproximadamente, $21h40min$ o que nos dá um \emph{speed-up} 
+em série, em um computador e de maneira direta (sem o \emph{BOINC})
+o tempo de execução seria de, aproximadamente, $21h40min$ o que nos dá um \emph{speed-up} 
 próximo de $1.5$.
 
 
