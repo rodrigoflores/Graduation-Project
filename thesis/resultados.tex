@@ -149,12 +149,11 @@ reduzimos o acúmulo de tarefas com o servidor para zero.
 
 
 Para testar a grade foi criado um script na linguagem \emph{R} que apenas fazia contas sem significado 
-por, aproximadamente, $4min20s$ ``dedicados'' (isto é, executados diretamente em um dos computadores da grade). Foram criados 
-$150$ \textit{workunits} para serem distribuídos entre as máquinas  processadas. Como
-configurado no servidor, foi utilizada uma redundância que enviava, 
+por, aproximadamente, $4min20s$ ``dedicados'' (isto é, executados diretamente em um dos computadores da grade). Foi utilizada  
+redundância que enviava, 
 para cada \textit{workunit}, duas tarefas a serem processadas.
 
-Foram feitos dois testes: um para certificar que as instalações nas máquinas foram bem sucedidas, e outro para calcular a média de tempo de execução sem interrupções. No primeiro teste, foram enviadas $1000$ tarefas, as quais utilizaram as $48$ máquinas que tinham o \textit{BOINC} instalado na época. Algumas execuções em algumas máquinas foram bastante demoradas (chegando a alguns milhares de segundos), provavelmente devido a algum usuário que interrompeu o processo, ou a alguma falha na configuração. 
+Foram feitos dois testes: um para certificar que as instalações nas máquinas foram bem sucedidas, e outro para calcular a média de tempo de execução sem interrupções. No primeiro teste, foram enviadas $1000$ tarefas, as quais utilizaram as $48$ máquinas que tinham o \textit{BOINC} no momento do teste. Algumas execuções em determinadas máquinas foram bastante demoradas (chegando a alguns milhares de segundos), provavelmente devido a algum usuário que interrompeu o processo, ou a alguma falha na configuração. 
 
 No segundo teste, o que se buscou foi o tempo médio de retorno. Devido a utilização do CEC no final do mês de janeiro e no início de feveiro para cursos de verão (no qual um deles utilizou o sistema Windows em uma das salas), duas máquinas fizeram o processamento das $300$ tarefas. O tempo médio 
 de processamento das tarefas foi de $9min2.167s$, com um desvio padrão de $14.486s$. Um histograma desta execução pode 
